@@ -1,8 +1,5 @@
 #include "lexer.h"
 
-char* begin,*forward;
-char* buffer;
-
 tokenList* addtoTkList(token* tk,tokenList* tkList){
 	tokenNode *t=(tokenNode*)malloc(sizeof(tokenNode));
 	t->tk=tk;
@@ -69,8 +66,8 @@ int checkKeyWord(char* b,char* f,char* valuebuffer){
 	return 0;
 }
 
-void retract(){
-	forward--;
+char* retract(char* forward){
+	return forward-1;
 }
 
 token* fillStruct(char* b,char* f,char* valuebuffer,char* s,int line_no){
@@ -127,6 +124,7 @@ tokenList* tokenize(FILE* fp,tokenList *tkList){
 	char* valuebuffer=(char*)malloc(30*sizeof(char));
 	int line_no=1,state=1;
 	fp=fillBuffer(fp,buffer);
+	char* begin,*forward;
 	begin = &buffer[0];
 	forward = begin;
 	int i=0,j=0;
@@ -278,7 +276,7 @@ tokenList* tokenize(FILE* fp,tokenList *tkList){
 					break;				
 				}
 			case 3:
-				retract();
+				forward=retract(forward);
 				i--;
 				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"ASSIGNOP",line_no),tkList);
 				forward++;
@@ -343,7 +341,7 @@ tokenList* tokenize(FILE* fp,tokenList *tkList){
 					break;
 				}
 			case 11:
-				retract();
+				forward=retract(forward);
 				i--;
 				if (checkKeyWord(begin,forward,valuebuffer)==1){
 					tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"MAIN",line_no),tkList);
@@ -383,7 +381,7 @@ tokenList* tokenize(FILE* fp,tokenList *tkList){
 				begin=forward;
 				break;
 			case 14:
-				retract();
+				forward=retract(forward);
 				i--;
 				if (checkKeyWord(begin,forward,valuebuffer)==1){
 					tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"KW",line_no),tkList);
@@ -436,7 +434,7 @@ tokenList* tokenize(FILE* fp,tokenList *tkList){
 				begin=forward;
 				break;
 			case 19:
-				retract();
+				forward=retract(forward);
 				i--;
 				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"NUM",line_no),tkList);
 				forward++;
@@ -664,7 +662,7 @@ tokenList* tokenize(FILE* fp,tokenList *tkList){
 				begin=forward;
 				break;
 			case 48:
-				retract();
+				forward=retract(forward);
 				i--;
 				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"LT",line_no),tkList);
 				forward++;
@@ -688,7 +686,7 @@ tokenList* tokenize(FILE* fp,tokenList *tkList){
 				begin=forward;
 				break;
 			case 51:
-				retract();
+				forward=retract(forward);
 				i--;
 				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"GT",line_no),tkList);
 				forward++;
@@ -702,17 +700,17 @@ tokenList* tokenize(FILE* fp,tokenList *tkList){
 }
 
 
-int main(){
-	FILE* fp;
-	fp=fopen("test1.txt","r");
-	buffer=(char*)malloc(30*sizeof(char));
-	tokenList *tkList=(tokenList*)malloc(sizeof(tokenList));
-	tkList=tokenize(fp,tkList);
-	token* t=(token*)malloc(sizeof(token));
-	while((t=getNextToken(tkList))!=NULL){
-		printToken(t);
-		free(t);
-		t=(token*)malloc(sizeof(token));	
-	}
-	return 0;
-}
+// int main(){
+// 	FILE* fp;
+// 	fp=fopen("test1.txt","r");
+// 	char* buffer=(char*)malloc(30*sizeof(char));
+// 	tokenList *tkList=(tokenList*)malloc(sizeof(tokenList));
+// 	tkList=tokenize(fp,tkList);
+// 	token* t=(token*)malloc(sizeof(token));
+// 	while((t=getNextToken(tkList))!=NULL){
+// 		printToken(t);
+// 		free(t);
+// 		t=(token*)malloc(sizeof(token));	
+// 	}
+// 	return 0;
+// }
