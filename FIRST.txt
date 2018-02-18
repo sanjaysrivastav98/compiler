@@ -1,0 +1,79 @@
+<mainFunction> ={MAIN}
+
+<stmtsAndFunctionDefs> = { eps, INT , REAL , STRING , MATRIX , ID , IF , READ , PRINT , SQO , FUNID , FUNCTION }
+
+<stmtOrFunctionDef> = {INT , REAL , STRING , MATRIX , ID , IF , READ , PRINT , SQO , FUNID , FUNCTION }
+
+<stmt> = {INT , REAL , STRING , MATRIX , ID , IF , READ , PRINT , SQO , FUNID }
+
+<functionDef> = { FUNCTION }
+
+<parameter_list> = { INT , REAL , STRING , MATRIX }
+
+<type> = { INT , REAL , STRING , MATRIX }
+
+<remainingList> = { eps , COMMA }
+
+<declarationStmt> = { INT , REAL , STRING , MATRIX }
+
+<var_list> = { ID}
+
+<more_ids> = { eps , COMMA }
+
+<assignmentStmt> = {ID}
+
+<leftHandSide> = {ID , SQO}
+
+<sizeCallStmt> = {ID , SQO}
+
+<conditionalStmt> = { IF }
+
+<elseORend> = { ELSE , ENDIF }
+
+<otherStmts> = { eps , INT , REAL , STRING , MATRIX , ID , IF , READ , PRINT , SQO , FUNID }
+
+<ioStmt> = { READ , PRINT }
+
+<funCallStmt> = { ID , SQO , FUNID }
+
+<functionCall> = { FUNID }
+
+<var_list1> = { eps , ID }
+
+<sizeExpression> = { SIZE }
+
+<arithmeticExpression>= { OP , ID , NUM , RNUM , STR , SQO }
+
+<arithmeticExpression1> = { eps, PLUS , MINUS}
+
+<termOp> = {PLUS , MINUS}
+
+<term> = { OP , ID , NUM , RNUM , STR , SQO }
+
+<term1> = { eps , DIV , MUL}
+
+<factorOp> = { DIV , MUL}
+
+<factor>={OP , ID , NUM , RNUM , STR , SQO}
+
+<booleanExpression>={ OP , NOT , ID , NUM , RNUM , STR , SQO}
+
+<var> = {ID , NUM , RNUM , STR , SQO}
+
+<matrixElement> ={ SQO , ID}
+
+<matrix1> = { SQO }
+
+<row> = {NUM}
+
+<firstRow> = {NUM} 
+
+<otherRows> = { eps , SEMICOLON}
+
+<otherEles> = { eps , COMMA}
+
+<matrix2> = {ID}
+
+<logicalOp> = {AND , OR}
+
+<relationalOp> ={LT , LE , EQ , GT , GE , NE}

@@ -1,0 +1,9 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+asdasd*jgvhf=77 .and. .or.
+
+1231231213123123211321231.12 end
+
+
+
