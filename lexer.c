@@ -1,17 +1,16 @@
 #include "lexer.h"
 
 char* begin,*forward;
-tokenList tkList;
 char* buffer;
 
-tokenList addtoTkList(token* tk){
+tokenList* addtoTkList(token* tk,tokenList* tkList){
 	tokenNode *t=(tokenNode*)malloc(sizeof(tokenNode));
 	t->tk=tk;
 	t->next=NULL;
-	tokenNode* temp=tkList.head;
+	tokenNode* temp=tkList->head;
 	if (temp==NULL){
 		temp=t;
-		tkList.head=temp;
+		tkList->head=temp;
 	}
 	else{
 		while(temp->next!=NULL){
@@ -20,6 +19,16 @@ tokenList addtoTkList(token* tk){
 		temp->next=t;
 	}
 	return tkList;
+}
+
+token* getNextToken(tokenList* tkList){
+	tokenNode *t=(tokenNode*)malloc(sizeof(tokenNode));
+	t=tkList->head;
+	if(t==NULL){
+		return NULL;
+	}
+	tkList->head=tkList->head->next;
+	return t->tk;
 }
 
 FILE* fillBuffer(FILE* fp,char* buffer){
@@ -57,10 +66,8 @@ int checkKeyWord(char* b,char* f,char* valuebuffer){
 	if( (strcmp(temp,"end")==0)||(strcmp(temp,"int")==0)||(strcmp(temp,"real")==0)||(strcmp(temp,"string")==0)||(strcmp(temp,"matrix")==0)||(strcmp(temp,"_main")==0)||(strcmp(temp,"if")==0)||(strcmp(temp,"else")==0)||(strcmp(temp,"endif")==0)||(strcmp(temp,"read")==0)||(strcmp(temp,"print")==0)||(strcmp(temp,"function")==0)){
 		return 1;
 	}
-	
 	return 0;
 }
-
 
 void retract(){
 	forward--;
@@ -113,8 +120,9 @@ void print(tokenList t){
 
 }
 
+// void removeComments(char *testcaseFile, char *cleanFile)
 
-char* tokenize(FILE* fp){
+tokenList* tokenize(FILE* fp,tokenList *tkList){
 	char* buffer=(char*)malloc(30*sizeof(char));
 	char* valuebuffer=(char*)malloc(30*sizeof(char));
 	int line_no=1,state=1;
@@ -147,11 +155,11 @@ char* tokenize(FILE* fp){
 			forward = begin;
 			continue;
 		}
-		printf("Entered,%c,%d %d\n",*forward,state,i);
+		// printf("Entered,%c,%d %d\n",*forward,state,i);
 		switch(state){
 			case 1:
 				valuebuffer[0]='$';
-				if (*forward=='$') return "Completed";
+				if (*forward=='$') return tkList;
 				if (*forward=='\n'){
 					line_no++;
 					forward++;
@@ -272,13 +280,13 @@ char* tokenize(FILE* fp){
 			case 3:
 				retract();
 				i--;
-				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"ASSIGNOP",line_no));
+				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"ASSIGNOP",line_no),tkList);
 				forward++;
 				state=1;
 				begin=forward;
 				break;
 			case 4:
-				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"EQ",line_no));
+				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"EQ",line_no),tkList);
 				state=1;
 				forward++; 
 				begin=forward;
@@ -290,11 +298,11 @@ char* tokenize(FILE* fp){
 					break;
 				}
 				else{
-					return "Lexical Error";
+					printf("Lexical Error in line %d\n",line_no);state=1;break;;
 				}
 				break;
 			case 6:
-				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"NE",line_no));
+				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"NE",line_no),tkList);
 				state=1;
 				forward++;
 				begin=forward;
@@ -321,7 +329,7 @@ char* tokenize(FILE* fp){
 					break;
 				}
 				else{
-					return "Lexical Error";
+					printf("Lexical Error in line %d\n",line_no);state=1;break;;
 				}
 			case 10:
 				if ((*forward >='a' && *forward <='z') || (*forward >='A' && *forward <='Z') || (*forward >='0' && *forward <='9')){
@@ -338,14 +346,14 @@ char* tokenize(FILE* fp){
 				retract();
 				i--;
 				if (checkKeyWord(begin,forward,valuebuffer)==1){
-					tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"MAIN",line_no));
+					tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"MAIN",line_no),tkList);
 					state=1;
 					forward++;
 					begin=forward;
 					break;
 				}
 				else{
-					tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"FUNID",line_no));
+					tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"FUNID",line_no),tkList);
 					state=1;
 					forward++;
 					begin=forward;
@@ -370,7 +378,7 @@ char* tokenize(FILE* fp){
 				break;
 			case 13:
 				state=1;
-				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"ID",line_no));
+				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"ID",line_no),tkList);
 				forward++;
 				begin=forward;
 				break;
@@ -378,10 +386,10 @@ char* tokenize(FILE* fp){
 				retract();
 				i--;
 				if (checkKeyWord(begin,forward,valuebuffer)==1){
-					tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"KW",line_no));
+					tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"KW",line_no),tkList);
 				}
 				else{
-					tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"ID",line_no));
+					tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"ID",line_no),tkList);
 				}
 				state=1;
 				forward++;
@@ -410,7 +418,7 @@ char* tokenize(FILE* fp){
 					break;
 				}
 				else{
-					return "Lexical Error";
+					printf("Lexical Error in line %d\n",line_no);state=1;break;;
 				}
 			case 17:
 				if((*forward >='0' && *forward <='9')){
@@ -419,18 +427,18 @@ char* tokenize(FILE* fp){
 					break;
 				}
 				else{
-					return "Lexical Error";
+					printf("Lexical Error in line %d\n",line_no);state=1;break;;
 				}
 			case 18:
 				state=1;
-				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"RNUM",line_no));
+				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"RNUM",line_no),tkList);
 				forward++;
 				begin=forward;
 				break;
 			case 19:
 				retract();
 				i--;
-				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"NUM",line_no));
+				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"NUM",line_no),tkList);
 				forward++;
 				state=1;
 				begin=forward;
@@ -442,7 +450,7 @@ char* tokenize(FILE* fp){
 					break;
 				}
 				else{
-					return "Lexical Error";
+					printf("Lexical Error in line %d\n",line_no);state=1;break;;
 				}
 			case 21:
 				if ((*forward >='a' && *forward <='z')){
@@ -456,76 +464,76 @@ char* tokenize(FILE* fp){
 					break;
 				}
 				else{
-					return "Lexical Error";
+					printf("Lexical Error in line %d\n",line_no);state=1;break;;
 				}
 			case 22:
-				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"STR",line_no));
+				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"STR",line_no),tkList);
 				forward++;
 				state=1;
 				begin=forward;
 				break;
 			case 23:
-				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"SQO",line_no));
+				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"SQO",line_no),tkList);
 				forward++;
 				state=1;
 				begin=forward;
 				break;
 			case 24:
-				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"SQC",line_no));
+				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"SQC",line_no),tkList);
 				forward++;
 				state=1;
 				begin=forward;
 				break;
 			case 25:
-				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"OP",line_no));
+				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"OP",line_no),tkList);
 				forward++;
 				state=1;
 				begin=forward;
 				break;
 			case 26:
-				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"CL",line_no));
+				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"CL",line_no),tkList);
 				forward++;
 				state=1;
 				begin=forward;
 				break;
 			case 27:
-				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"SEMICOLON",line_no));
+				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"SEMICOLON",line_no),tkList);
 				forward++;
 				state=1;
 				begin=forward;
 				break;
 			case 28:
-				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"COMMA",line_no));
+				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"COMMA",line_no),tkList);
 				forward++;
 				state=1;
 				begin=forward;
 				break;
 			case 29:
-				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"PLUS",line_no));
+				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"PLUS",line_no),tkList);
 				forward++;
 				state=1;
 				begin=forward;
 				break;
 			case 30:
-				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"MINUS",line_no));
+				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"MINUS",line_no),tkList);
 				forward++;
 				state=1;
 				begin=forward;
 				break;
 			case 31:
-				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"MUL",line_no));
+				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"MUL",line_no),tkList);
 				forward++;
 				state=1;
 				begin=forward;
 				break;
 			case 32:
-				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"DIV",line_no));
+				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"DIV",line_no),tkList);
 				forward++;
 				state=1;
 				begin=forward;
 				break;
 			case 33:
-				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"SIZE",line_no));
+				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"SIZE",line_no),tkList);
 				forward++;
 				state=1;
 				begin=forward;
@@ -547,7 +555,7 @@ char* tokenize(FILE* fp){
 					break;
 				}
 				else{
-					return "Lexical Error";
+					printf("Lexical Error in line %d\n",line_no);state=1;break;;
 				}
 			case 35:
 				if (*forward=='n'){
@@ -556,7 +564,7 @@ char* tokenize(FILE* fp){
 					break;
 				}
 				else{
-					return "Lexical Error";
+					printf("Lexical Error in line %d\n",line_no);state=1;break;;
 				}
 			case 36:
 				if(*forward=='d'){
@@ -565,7 +573,7 @@ char* tokenize(FILE* fp){
 					break;
 				}
 				else{
-					return "Lexical Error";
+					printf("Lexical Error in line %d\n",line_no);state=1;break;;
 				}
 			case 37:
 				if(*forward=='.'){
@@ -574,10 +582,10 @@ char* tokenize(FILE* fp){
 					break;
 				}
 				else{
-					return "Lexical Error";
+					printf("Lexical Error in line %d\n",line_no);state=1;break;;
 				}
 			case 38:
-				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"AND",line_no));
+				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"AND",line_no),tkList);
 				forward++;
 				state=1;
 				begin=forward;
@@ -589,7 +597,7 @@ char* tokenize(FILE* fp){
 					break;
 				}
 				else{
-					return "Lexical Error";
+					printf("Lexical Error in line %d\n",line_no);state=1;break;;
 				}
 			case 40:
 				if(*forward=='.'){
@@ -598,10 +606,10 @@ char* tokenize(FILE* fp){
 					break;
 				}
 				else{
-					return "Lexical Error";
+					printf("Lexical Error in line %d\n",line_no);state=1;break;;
 				}
 			case 41:
-				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"OR",line_no));
+				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"OR",line_no),tkList);
 				forward++;
 				state=1;
 				begin=forward;
@@ -613,7 +621,7 @@ char* tokenize(FILE* fp){
 					break;
 				}
 				else{
-					return "Lexical Error";
+					printf("Lexical Error in line %d\n",line_no);state=1;break;;
 				}
 			case 43:
 				if(*forward=='t'){
@@ -622,7 +630,7 @@ char* tokenize(FILE* fp){
 					break;
 				}
 				else{
-					return "Lexical Error";
+					printf("Lexical Error in line %d\n",line_no);state=1;break;;
 				}
 			case 44:
 				if(*forward=='.'){
@@ -631,10 +639,10 @@ char* tokenize(FILE* fp){
 					break;
 				}
 				else{
-					return "Lexical Error";
+					printf("Lexical Error in line %d\n",line_no);state=1;break;;
 				}
 			case 45:
-				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"NOT",line_no));
+				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"NOT",line_no),tkList);
 				forward++;
 				state=1;
 				begin=forward;
@@ -650,7 +658,7 @@ char* tokenize(FILE* fp){
 				}
 				break;
 			case 47:
-				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"LE",line_no));
+				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"LE",line_no),tkList);
 				forward++;
 				state=1;
 				begin=forward;
@@ -658,7 +666,7 @@ char* tokenize(FILE* fp){
 			case 48:
 				retract();
 				i--;
-				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"LT",line_no));
+				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"LT",line_no),tkList);
 				forward++;
 				state=1;
 				begin=forward;
@@ -674,7 +682,7 @@ char* tokenize(FILE* fp){
 				}
 				break;
 			case 50:
-				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"GE",line_no));
+				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"GE",line_no),tkList);
 				forward++;
 				state=1;
 				begin=forward;
@@ -682,7 +690,7 @@ char* tokenize(FILE* fp){
 			case 51:
 				retract();
 				i--;
-				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"GT",line_no));
+				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"GT",line_no),tkList);
 				forward++;
 				state=1;
 				begin=forward;
@@ -690,18 +698,21 @@ char* tokenize(FILE* fp){
 		}
 
 	}
+	return tkList;
 }
+
 
 int main(){
 	FILE* fp;
 	fp=fopen("test1.txt","r");
 	buffer=(char*)malloc(30*sizeof(char));
-	char* s;
-	s=tokenize(fp);
-	if (s=="Lexical Error"){
-		return 0;
+	tokenList *tkList=(tokenList*)malloc(sizeof(tokenList));
+	tkList=tokenize(fp,tkList);
+	token* t=(token*)malloc(sizeof(token));
+	while((t=getNextToken(tkList))!=NULL){
+		printToken(t);
+		free(t);
+		t=(token*)malloc(sizeof(token));	
 	}
-	printf("%s\n",s);
-	print(tkList);
 	return 0;
 }

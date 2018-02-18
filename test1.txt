@@ -3,7 +3,15 @@
 #include <string.h>
 asdasd*jgvhf=77 .and. .or.
 
-1231231213123123211321231.12 end
+1231231213123123211321231.12 end	
+a = @s;
+[a,b] = @m;		
+
+function [string x, int m] = _operationDemoA[string u,string v, int a, int b]
+#This is a sample function definition
+xsdfsdfdsfdfsdfsdfsdf = u + v;
+m = a + b;
+end
 
 
 
