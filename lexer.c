@@ -1,25 +1,26 @@
-#include "lexer.h"
+//K S Sanjay Srivastav 
+//2015A7PS0102P
+#include "lexerDef.h"
 
-tokenList* addtoTkList(token* tk,tokenList* tkList){
-	tokenNode *t=(tokenNode*)malloc(sizeof(tokenNode));
+tokenList addtoTkList(Token tk,tokenList tkList){
+	tokenNode t=(tokenNode)malloc(sizeof(tokennode));
 	t->tk=tk;
 	t->next=NULL;
-	tokenNode* temp=tkList->head;
+	tokenNode temp=tkList->tail;
 	if (temp==NULL){
 		temp=t;
 		tkList->head=temp;
+		tkList->tail=temp;
 	}
 	else{
-		while(temp->next!=NULL){
-			temp=temp->next;
-		}
 		temp->next=t;
+		tkList->tail=t;
 	}
 	return tkList;
 }
 
-token* getNextToken(tokenList* tkList){
-	tokenNode *t=(tokenNode*)malloc(sizeof(tokenNode));
+Token getNextToken(tokenList tkList){
+	tokenNode t;
 	t=tkList->head;
 	if(t==NULL){
 		return NULL;
@@ -28,7 +29,7 @@ token* getNextToken(tokenList* tkList){
 	return t->tk;
 }
 
-FILE* fillBuffer(FILE* fp,char* buffer){
+FILE* getStream(FILE* fp,char* buffer){
 	int i=0,j=0;
 	char c;
 	i=fread(buffer,1,30,fp);
@@ -58,11 +59,72 @@ char* extractWord(char* b,char* f,char* valuebuffer){
 	return temp;
 }
 
+int hash(char *str,int m)
+{
+    unsigned long hash = 5381;
+    int c;
+    while (c = *str++)
+        hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
+    return (int)(hash%m);
+}
+
+void fillKeyHash(){
+	char* word[12];
+	int i=0,h;
+	int m=37;
+	keyWord temp=NULL;
+	word[0]=(char*)malloc(4*sizeof(char));
+	strcpy(word[0],"end");
+	word[1]=(char*)malloc(4*sizeof(char));
+	strcpy(word[1],"int");
+	word[2]=(char*)malloc(5*sizeof(char));
+	strcpy(word[2],"real");
+	word[3]=(char*)malloc(6*sizeof(char));
+	strcpy(word[3],"string");
+	word[4]=(char*)malloc(7*sizeof(char));
+	strcpy(word[4],"matrix");
+	word[5]=(char*)malloc(6*sizeof(char));
+	strcpy(word[5],"_main");
+	word[6]=(char*)malloc(3*sizeof(char));
+	strcpy(word[6],"if");
+	word[7]=(char*)malloc(5*sizeof(char));
+	strcpy(word[7],"else");
+	word[8]=(char*)malloc(6*sizeof(char));
+	strcpy(word[8],"endif");
+	word[9]=(char*)malloc(5*sizeof(char));
+	strcpy(word[9],"read");
+	word[10]=(char*)malloc(6*sizeof(char));
+	strcpy(word[10],"print");
+	word[11]=(char*)malloc(9*sizeof(char));
+	strcpy(word[11],"function");
+	for(i=0;i<12;i++){
+		h=hash(word[i],m);
+		temp=(keyWord)malloc(sizeof(keyword));
+		temp->name=word[i];
+		temp->next=NULL;
+		if(keyHash[h]==NULL){
+			keyHash[h]=temp;
+		}
+		else{
+			temp->next=keyHash[h];
+			keyHash[h]=temp;
+		}
+	}
+}
+
 int checkKeyWord(char* b,char* f,char* valuebuffer){
 	char* temp=extractWord(b,f,valuebuffer);
-	if( (strcmp(temp,"end")==0)||(strcmp(temp,"int")==0)||(strcmp(temp,"real")==0)||(strcmp(temp,"string")==0)||(strcmp(temp,"matrix")==0)||(strcmp(temp,"_main")==0)||(strcmp(temp,"if")==0)||(strcmp(temp,"else")==0)||(strcmp(temp,"endif")==0)||(strcmp(temp,"read")==0)||(strcmp(temp,"print")==0)||(strcmp(temp,"function")==0)){
-		return 1;
+	int m=37;
+	keyWord temp2=NULL;
+	temp2=keyHash[hash(temp,m)];
+	while(temp2!=NULL){
+		if(strcmp(temp2->name,temp)==0){
+			free(temp);
+			return 1;
+		}
+		temp2=temp2->next;
 	}
+	free(temp);
 	return 0;
 }
 
@@ -70,25 +132,36 @@ char* retract(char* forward){
 	return forward-1;
 }
 
-token* fillStruct(char* b,char* f,char* valuebuffer,char* s,int line_no){
-	token *tk;
-	tk=(token*)malloc(sizeof(token));
+Token fillStruct(char* b,char* f,char* valuebuffer,char* s,int line_no){
+	Token tk;
+	
+	char* temp=extractWord(b,f,valuebuffer);
+	
+	if((strcmp(s,"ID")==0) ||(strcmp(s,"STR")==0) ) {
+		if(strlen(temp)>20)
+			return NULL;
+	}
+	tk=(Token)malloc(sizeof(token));
 	tk->line_no=line_no;
-	char* temp;
+	int i=0,k;
 	if(strcmp(s,"KW")==0){
-		temp=extractWord(b,f,valuebuffer);
-		int k=strlen(temp);
-		while(*temp){
-			*temp = toupper((unsigned char) *temp);
-			temp++;
+		tk->value=(char*)malloc(30*sizeof(char));
+		strcpy(tk->value,temp);
+		k=strlen(temp);
+		while(i<k){
+			temp[i] = toupper(temp[i]);
+			i++;
 		}
-		strcpy(tk->token_id,temp-k);
+		strcpy(tk->token_id,temp);
+		free(temp);
 		return tk;
 	}
-	strcpy(tk->token_id,s);
-	if (strcmp(tk->token_id,"RNUM")==0 || strcmp(tk->token_id,"NUM")==0 || strcmp(tk->token_id,"ID")==0 || strcmp(tk->token_id,"FUN_ID")==0 || strcmp(tk->token_id,"STR")==0){
+
+	else{
+		strcpy(tk->token_id,s);
 		tk->value=(char*)malloc(30*sizeof(char));
-		tk->value=extractWord(b,f,valuebuffer);
+		tk->value=temp;
+		
 	}
 	return tk;
 }
@@ -99,31 +172,54 @@ char* renewBuffer(char* b){
 	return b;
 }
 
-void printToken(token* tk){
-	if (strcmp(tk->token_id,"RNUM")==0 || strcmp(tk->token_id,"NUM")==0 || strcmp(tk->token_id,"ID")==0 || strcmp(tk->token_id,"FUN_ID")==0 || strcmp(tk->token_id,"STR")==0){
-		printf("TOKEN-->%s\t%s\t%d\n",tk->token_id,tk->value,tk->line_no);
+void printToken(Token tk){
+	// if (strcmp(tk->token_id,"RNUM")==0 || strcmp(tk->token_id,"NUM")==0 || strcmp(tk->token_id,"ID")==0 || strcmp(tk->token_id,"FUN_ID")==0 || strcmp(tk->token_id,"STR")==0){
 	
-	}
-	else{
-		printf("TOKEN-->%s\t%d\n",tk->token_id,tk->line_no);
-	}
+	printf("%-20s%-20s%-20d\n",tk->token_id,tk->value,tk->line_no);
+	
+	// }
+	// else{
+	// 	printf("%s:\t-\t%d\n",tk->token_id,tk->line_no);
+	// }
 }
 void print(tokenList t){
-	tokenNode* temp=t.head;
-	while(temp!=NULL){
+	tokenNode temp=t->head;
+	printf("-----------------------------------------------------------------\n");
+	printf("%-20s%-20s%-20s\n","Token ID","Token Value","Line Number");
+	printf("-----------------------------------------------------------------\n");
+	while(temp!=NULL && strcmp(temp->tk->token_id,"$")!=0){
 		printToken(temp->tk);
 		temp=temp->next;
 	}
 
 }
 
-// void removeComments(char *testcaseFile, char *cleanFile)
+void removeComments(char* filename){
+	FILE* fp=fopen(filename,"r");
+	char * line = NULL;
+	size_t len = 0;
+	ssize_t read;
+	int j,i=0,k,l;
+	while ((read = getline(&line, &len, fp)) != -1) {
+		i=0;
+		while(i<len){
+			if(line[i]!=' ' && line[i]!='\t') break;
+			i++;
+		}
+		if(line[i]=='#') continue;
+		else{
+			printf("%s",line);
+		}
+	}
+	fclose(fp);
+}
 
-tokenList* tokenize(FILE* fp,tokenList *tkList){
+tokenList tokenize(FILE* fp,tokenList tkList){
 	char* buffer=(char*)malloc(30*sizeof(char));
 	char* valuebuffer=(char*)malloc(30*sizeof(char));
 	int line_no=1,state=1;
-	fp=fillBuffer(fp,buffer);
+	Token temp_token;
+	fp=getStream(fp,buffer);
 	char* begin,*forward;
 	begin = &buffer[0];
 	forward = begin;
@@ -134,7 +230,7 @@ tokenList* tokenize(FILE* fp,tokenList *tkList){
 			i=0;
 			if (state==1){
 				buffer=renewBuffer(buffer);
-				fp=fillBuffer(fp,buffer);	
+				fp=getStream(fp,buffer);	
 				begin = &buffer[0];
 				valuebuffer[0]='$';
 			}
@@ -147,7 +243,7 @@ tokenList* tokenize(FILE* fp,tokenList *tkList){
 				}
 				valuebuffer[j]='$';
 				buffer=renewBuffer(buffer);
-				fp=fillBuffer(fp,buffer);	
+				fp=getStream(fp,buffer);	
 				begin = &buffer[0];
 			}
 			forward = begin;
@@ -157,7 +253,17 @@ tokenList* tokenize(FILE* fp,tokenList *tkList){
 		switch(state){
 			case 1:
 				valuebuffer[0]='$';
-				if (*forward=='$') return tkList;
+				// printf("fdsfsdgdgdfg---------------%s\n",forward);					
+				if (*forward=='$'){
+					// printf("fdsfsdgdgdfg---------------\n");
+					temp_token=(Token)malloc(sizeof(token));
+					temp_token->line_no=line_no;
+					strcpy(temp_token->token_id,"$");
+					temp_token->value=(char*)malloc(30*sizeof(char));
+					strcpy(temp_token->value,"$");
+					tkList=addtoTkList(temp_token,tkList);
+					return tkList;
+				}
 				if (*forward=='\n'){
 					line_no++;
 					forward++;
@@ -165,7 +271,7 @@ tokenList* tokenize(FILE* fp,tokenList *tkList){
 					state=1;
 					break;
 				}
-				if  (*forward=='\t' || *forward==' '){
+				if  (*forward=='\t' || *forward==' ' || *forward == '\r'){
 					state=1;
 					forward++;
 					begin=forward;
@@ -296,7 +402,8 @@ tokenList* tokenize(FILE* fp,tokenList *tkList){
 					break;
 				}
 				else{
-					printf("Lexical Error in line %d\n",line_no);state=1;break;;
+					error++;
+					printf("Line No. %d:Lexical Error : Unknown pattern. Expected '=' but given %c\n",line_no,*forward);state=1;begin=forward;break;
 				}
 				break;
 			case 6:
@@ -324,11 +431,14 @@ tokenList* tokenize(FILE* fp,tokenList *tkList){
 				if ((*forward >='a' && *forward <='z') || (*forward >='A' && *forward <='Z')){
 					state=10;
 					forward++;
-					break;
+					
 				}
 				else{
-					printf("Lexical Error in line %d\n",line_no);state=1;break;;
+					i--;
+					error++;
+					printf("Line No. %d:Lexical Error : Unknown pattern. Expected alphabet but given %c\n",line_no,*forward);state=1;begin=forward;break;
 				}
+				break;
 			case 10:
 				if ((*forward >='a' && *forward <='z') || (*forward >='A' && *forward <='Z') || (*forward >='0' && *forward <='9')){
 					state=10;
@@ -337,7 +447,8 @@ tokenList* tokenize(FILE* fp,tokenList *tkList){
 				}
 				else{
 					state=11;
-					forward++;
+					i--;
+					// forward++;
 					break;
 				}
 			case 11:
@@ -376,7 +487,15 @@ tokenList* tokenize(FILE* fp,tokenList *tkList){
 				break;
 			case 13:
 				state=1;
-				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"ID",line_no),tkList);
+
+				temp_token=fillStruct(begin,forward,valuebuffer,"ID",line_no);
+				if(temp_token==NULL){
+					error++;
+					printf("Line No. %d:Lexical Error : Identifier is longer than the prescribed length\n",line_no);
+				}
+				else{
+					tkList=addtoTkList(temp_token,tkList);
+				}
 				forward++;
 				begin=forward;
 				break;
@@ -416,8 +535,11 @@ tokenList* tokenize(FILE* fp,tokenList *tkList){
 					break;
 				}
 				else{
-					printf("Lexical Error in line %d\n",line_no);state=1;break;;
+					i--;
+					error++;
+					printf("Line No. %d:Lexical Error : Unknown pattern '%s'\n",line_no,extractWord(begin,forward,valuebuffer));state=1;begin=forward;break;
 				}
+				break;
 			case 17:
 				if((*forward >='0' && *forward <='9')){
 					state=18;
@@ -425,8 +547,11 @@ tokenList* tokenize(FILE* fp,tokenList *tkList){
 					break;
 				}
 				else{
-					printf("Lexical Error in line %d\n",line_no);state=1;break;;
+					i--;
+					error++;
+					printf("Line No. %d:Lexical Error : Unkown Pattern '%s'\n",line_no,extractWord(begin,forward,valuebuffer));state=1;begin=forward;break;
 				}
+				break;
 			case 18:
 				state=1;
 				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"RNUM",line_no),tkList);
@@ -442,16 +567,18 @@ tokenList* tokenize(FILE* fp,tokenList *tkList){
 				begin=forward;
 				break;
 			case 20:
-				if((*forward >='a' && *forward <='z')){
+				if((*forward >='a' && *forward <='z') || (*forward==' ')){
 					state=21;
 					forward++;
 					break;
 				}
 				else{
-					printf("Lexical Error in line %d\n",line_no);state=1;break;;
-				}
+					i--;
+					error++;
+					printf("Line No. %d:Lexical Error : Unknown pattern '%s'\n",line_no,extractWord(begin,forward,valuebuffer));state=1;begin=forward;break;
+				}break;
 			case 21:
-				if ((*forward >='a' && *forward <='z')){
+				if ((*forward >='a' && *forward <='z') || (*forward==' ')){
 					state=21;
 					forward++;
 					break;
@@ -462,10 +589,18 @@ tokenList* tokenize(FILE* fp,tokenList *tkList){
 					break;
 				}
 				else{
-					printf("Lexical Error in line %d\n",line_no);state=1;break;;
-				}
+					error++;
+					printf("Line No. %d:Lexical Error : Unknown pattern '%s'\n",line_no,extractWord(begin,forward,valuebuffer));state=1;begin=forward;break;
+				}break;
 			case 22:
-				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"STR",line_no),tkList);
+				temp_token=fillStruct(begin,forward,valuebuffer,"STR",line_no);
+				if(temp_token==NULL){
+					error++;
+					printf("Line No. %d:Lexical Error : Identifier is longer than the prescribed length\n",line_no);
+				}
+				else{
+					tkList=addtoTkList(temp_token,tkList);
+				}
 				forward++;
 				state=1;
 				begin=forward;
@@ -553,7 +688,9 @@ tokenList* tokenize(FILE* fp,tokenList *tkList){
 					break;
 				}
 				else{
-					printf("Lexical Error in line %d\n",line_no);state=1;break;;
+					i--;
+					error++;
+					printf("Line No. %d:Lexical Error : Unknown Pattern '%s'\n",line_no,extractWord(begin,forward,valuebuffer));state=1;begin=forward;break;
 				}
 			case 35:
 				if (*forward=='n'){
@@ -562,7 +699,9 @@ tokenList* tokenize(FILE* fp,tokenList *tkList){
 					break;
 				}
 				else{
-					printf("Lexical Error in line %d\n",line_no);state=1;break;;
+					i--;
+					error++;
+					printf("Line No. %d:Lexical Error : Unknown pattern '%s'\n",line_no,extractWord(begin,forward,valuebuffer));state=1;begin=forward;break;
 				}
 			case 36:
 				if(*forward=='d'){
@@ -571,8 +710,10 @@ tokenList* tokenize(FILE* fp,tokenList *tkList){
 					break;
 				}
 				else{
-					printf("Lexical Error in line %d\n",line_no);state=1;break;;
-				}
+					i--;
+					error++;
+					printf("Line No. %d:Lexical Error : Unknown pattern '%s'\n",line_no,extractWord(begin,forward,valuebuffer));state=1;begin=forward;break;
+				}break;
 			case 37:
 				if(*forward=='.'){
 					state=38;
@@ -580,8 +721,10 @@ tokenList* tokenize(FILE* fp,tokenList *tkList){
 					break;
 				}
 				else{
-					printf("Lexical Error in line %d\n",line_no);state=1;break;;
-				}
+					i--;
+					error++;
+					printf("Line No. %d:Lexical Error : Unknown pattern '%s'\n",line_no,extractWord(begin,forward,valuebuffer));state=1;begin=forward;break;
+				}break;
 			case 38:
 				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"AND",line_no),tkList);
 				forward++;
@@ -595,8 +738,10 @@ tokenList* tokenize(FILE* fp,tokenList *tkList){
 					break;
 				}
 				else{
-					printf("Lexical Error in line %d\n",line_no);state=1;break;;
-				}
+					i--;
+					error++;
+					printf("Line No. %d:Lexical Error : Unknown pattern '%s'\n",line_no,extractWord(begin,forward,valuebuffer));state=1;begin=forward;break;
+				}break;
 			case 40:
 				if(*forward=='.'){
 					state=41;
@@ -604,8 +749,10 @@ tokenList* tokenize(FILE* fp,tokenList *tkList){
 					break;
 				}
 				else{
-					printf("Lexical Error in line %d\n",line_no);state=1;break;;
-				}
+					i--;
+					error++;
+					printf("Line No. %d:Lexical Error : Unknown pattern '%s'\n",line_no,extractWord(begin,forward,valuebuffer));state=1;begin=forward;break;
+				}break;
 			case 41:
 				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"OR",line_no),tkList);
 				forward++;
@@ -619,8 +766,10 @@ tokenList* tokenize(FILE* fp,tokenList *tkList){
 					break;
 				}
 				else{
-					printf("Lexical Error in line %d\n",line_no);state=1;break;;
-				}
+					i--;
+					error++;
+					printf("Line No. %d:Lexical Error : Unknown pattern '%s'\n",line_no,extractWord(begin,forward,valuebuffer));state=1;begin=forward;break;
+				}break;
 			case 43:
 				if(*forward=='t'){
 					state=44;
@@ -628,8 +777,10 @@ tokenList* tokenize(FILE* fp,tokenList *tkList){
 					break;
 				}
 				else{
-					printf("Lexical Error in line %d\n",line_no);state=1;break;;
-				}
+					i--;
+					error++;
+					printf("Line No. %d:Lexical Error : Unknown pattern '%s'\n",line_no,extractWord(begin,forward,valuebuffer));state=1;begin=forward;break;
+				}break;
 			case 44:
 				if(*forward=='.'){
 					state=45;
@@ -637,8 +788,10 @@ tokenList* tokenize(FILE* fp,tokenList *tkList){
 					break;
 				}
 				else{
-					printf("Lexical Error in line %d\n",line_no);state=1;break;;
-				}
+					i--;
+					error++;
+					printf("Line No. %d:Lexical Error : Unknown pattern '%s'\n",line_no,extractWord(begin,forward,valuebuffer));state=1;begin=forward;break;
+				}break;
 			case 45:
 				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"NOT",line_no),tkList);
 				forward++;
@@ -699,18 +852,3 @@ tokenList* tokenize(FILE* fp,tokenList *tkList){
 	return tkList;
 }
 
-
-// int main(){
-// 	FILE* fp;
-// 	fp=fopen("test1.txt","r");
-// 	char* buffer=(char*)malloc(30*sizeof(char));
-// 	tokenList *tkList=(tokenList*)malloc(sizeof(tokenList));
-// 	tkList=tokenize(fp,tkList);
-// 	token* t=(token*)malloc(sizeof(token));
-// 	while((t=getNextToken(tkList))!=NULL){
-// 		printToken(t);
-// 		free(t);
-// 		t=(token*)malloc(sizeof(token));	
-// 	}
-// 	return 0;
-// }
