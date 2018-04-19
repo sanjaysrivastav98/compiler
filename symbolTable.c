@@ -4,7 +4,7 @@
 #include <stdlib.h>
 
 int ht_size=91;
-
+int last_offset=0;
 matSize getOffset(astNode s,matSize m){
     astNode temp=s,tempChil;
     int a=0,row,prev;
@@ -39,6 +39,7 @@ symbolTable insertToHT(symbolTable st,astNode root,int* offset){
     astNode par=root->next;
     if(temp==NULL){
         *offset=-1;
+        st->last_offset=-1;
         return NULL;
     }
     if(strcmp(type,"INT")==0 || strcmp(type,"REAL")==0){
@@ -63,7 +64,7 @@ symbolTable insertToHT(symbolTable st,astNode root,int* offset){
                 stNode tempNode=st->ht->s[h];
                 while(tempNode->next!=NULL){
                     if(strcmp(temp->p->tk->value,tempNode->var_name)==0){
-                        printf("Multiple Declarations of the variable %s at line %d \n",temp->p->tk->value,temp->p->tk->line_no);
+                        fprintf(errorFile,"Multiple Declarations of the variable %s at line %d \n",temp->p->tk->value,temp->p->tk->line_no);
                         break;
                         // return st;
                         // *offset=-1;
@@ -74,7 +75,7 @@ symbolTable insertToHT(symbolTable st,astNode root,int* offset){
                 if(strcmp(temp->p->tk->value,tempNode->var_name)==0){
                     // *offset=-1;
                     // return NULL;
-                    printf("Multiple Declarations of the variable %s at line %d.\n",temp->p->tk->value,temp->p->tk->line_no);
+                    fprintf(errorFile,"Multiple Declarations of the variable %s at line %d.\n",temp->p->tk->value,temp->p->tk->line_no);
                     break;
                     // return st;
                 }
@@ -95,6 +96,7 @@ symbolTable insertToHT(symbolTable st,astNode root,int* offset){
             }
             temp=temp->next;
         }
+        st->last_offset=*offset;
         return st;
     }
     while(temp!=NULL){
@@ -103,12 +105,12 @@ symbolTable insertToHT(symbolTable st,astNode root,int* offset){
             if((strcmp(tempPar->name,"ASSIGNMENTSTMT")==0) && (strcmp(tempPar->children->p->tk->value,temp->p->tk->value)==0) ){
                 if(strcmp(tempPar->children->next->name,"FUNCTIONCALL")==0){
                     // *offset=-1;
-                    printf("STRING or MATRIX %s initialized with a function Call at line %d - Not supported\n",temp->p->tk->value,tempPar->children->p->tk->line_no);
+                    fprintf(errorFile,"STRING or MATRIX %s initialized with a function Call at line %d - Not supported\n",temp->p->tk->value,tempPar->children->p->tk->line_no);
                     break;
                     // return  st;
                 }
                 else if(strcmp(tempPar->children->next->name,"PLUS")==0 || strcmp(tempPar->children->next->name,"MINUS")==0 || strcmp(tempPar->children->next->name,"MUL")==0 || strcmp(tempPar->children->next->name,"DIV")==0){
-                    printf("Variable %s used at line number %d before assigned\n",temp->p->tk->value,tempPar->children->p->tk->line_no);
+                    fprintf(errorFile,"Variable %s used at line number %d before assigned\n",temp->p->tk->value,tempPar->children->p->tk->line_no);
                     tempPar=tempPar->next;
                     continue;
                 }
@@ -122,7 +124,7 @@ symbolTable insertToHT(symbolTable st,astNode root,int* offset){
                             st->ht->s[h]->mat = (matSize)calloc(1,sizeof(matsize));
                             st->ht->s[h]->mat=getOffset(tempPar->children->next,st->ht->s[h]->mat);
                             if(NULL==st->ht->s[h]->mat){
-                                printf("Inconsistent Matrix declaration for variable %s at line %d\n",temp->p->tk->value,tempPar->children->p->tk->line_no);
+                                fprintf(errorFile,"Inconsistent Matrix declaration for variable %s at line %d\n",temp->p->tk->value,tempPar->children->p->tk->line_no);
                                 break;
                             }
                             st->ht->s[h]->type=type;
@@ -146,13 +148,13 @@ symbolTable insertToHT(symbolTable st,astNode root,int* offset){
                         stNode tempNode=st->ht->s[h];
                         while(tempNode->next!=NULL){
                             if(strcmp(tempPar->children->next->p->tk->value,tempNode->var_name)==0){
-                                printf("Multiple Declarations of the variable %s at line %d\n",temp->p->tk->value,temp->p->tk->line_no);
+                                fprintf(errorFile,"Multiple Declarations of the variable %s at line %d\n",temp->p->tk->value,temp->p->tk->line_no);
                                 break;
                             }
                             tempNode=tempNode->next;
                         }
                         if(strcmp(tempPar->children->next->p->tk->value,tempNode->var_name)==0){
-                            printf("Multiple Declarations of the variable %s at line %d \n",temp->p->tk->value,temp->p->tk->line_no);
+                            fprintf(errorFile,"Multiple Declarations of the variable %s at line %d \n",temp->p->tk->value,temp->p->tk->line_no);
                             break;
                         }
                         
@@ -164,7 +166,7 @@ symbolTable insertToHT(symbolTable st,astNode root,int* offset){
                             tempNode->mat = (matSize)calloc(1,sizeof(matsize));
                             tempNode->mat=getOffset(tempPar->children->next,tempNode->mat);
                             if(tempNode->mat == NULL){
-                                printf("Inconsistent Matrix declaration for variable %s at line %d\n",temp->p->tk->value,temp->p->tk->line_no);
+                                fprintf(errorFile,"Inconsistent Matrix declaration for variable %s at line %d\n",temp->p->tk->value,temp->p->tk->line_no);
                                 break;
                             }
                             tempNode->offset=(2*tempNode->mat->x*tempNode->mat->y);
@@ -190,10 +192,11 @@ symbolTable insertToHT(symbolTable st,astNode root,int* offset){
             tempPar=tempPar->next;
         }
         if(tempPar==NULL){
-            printf("Uninitialized variable %s at line %d\n",temp->p->tk->value,temp->p->tk->line_no);
+            fprintf(errorFile,"Uninitialized variable %s at line %d\n",temp->p->tk->value,temp->p->tk->line_no);
         }
         temp=temp->next;
     }
+    st->last_offset=*offset;
     return st;
 }
 
@@ -210,6 +213,7 @@ int checkinHash(symbolTable st,char* name){
 }
 
 symbolTable buildST(astNode root){
+    // last_offset=0;
     int begin_offset=0,flag=0;
     astNode temp=root,temp2;
     astNode par=root;
@@ -217,6 +221,9 @@ symbolTable buildST(astNode root){
     symbolTable stAns=NULL;
     
     st = (symbolTable)malloc(sizeof(symboltable));
+    st->par=NULL;
+    st->next=NULL;
+    st->children=NULL;
     st->ht = (st_hashTable)malloc(sizeof(st_hashtable));
     stAns=st;
     if(strcmp(temp->name,"MAIN")==0){
@@ -234,7 +241,7 @@ symbolTable buildST(astNode root){
         }
     }
     if(temp==NULL){
-        printf("Name of the function is not defined at line %d\n",root->children->children->p->tk->line_no);
+        fprintf(errorFile,"Name of the function is not defined at line %d\n",root->children->children->p->tk->line_no);
         return NULL;
     }
     temp=root;
@@ -255,25 +262,27 @@ symbolTable buildST(astNode root){
                 }
                 while(stChil->next!=NULL){
                     if(temp2!=NULL && strcmp(stChil->ht->scope,temp2->p->tk->value)==0){
-                        printf("Multiple Declarations of function %s at line %d\n",temp2->p->tk->value,temp2->p->tk->line_no);
+                        fprintf(errorFile,"Multiple Declarations of function %s at line %d\n",temp2->p->tk->value,temp2->p->tk->line_no);
                         break;
                     }
                     stChil=stChil->next;
                 }
                 if(temp2!=NULL && strcmp(stChil->ht->scope,temp2->p->tk->value)==0){
-                    printf("Multiple Declarations of function %s at line %d\n",temp2->p->tk->value,temp2->p->tk->line_no);
+                    fprintf(errorFile,"Multiple Declarations of function %s at line %d\n",temp2->p->tk->value,temp2->p->tk->line_no);
                 }
                 else if(stChil->next==NULL){
                     stChil->next=buildST(temp);
+                    stChil->next->par=stChil->par;
                 }
             }
             else{
                 st->children=buildST(temp);
+                st->children->par=st;
             }
         }
         else if(strcmp(temp->name,"ASSIGNMENTSTMT")==0){
             if(checkinHash(st,temp->children->p->tk->value)==0){
-                printf("Undeclared Variable %s at line %d\n",temp->children->p->tk->value,temp->children->p->tk->line_no);
+                fprintf(errorFile,"Undeclared Variable %s at line %d\n",temp->children->p->tk->value,temp->children->p->tk->line_no);
             }
         }
         else if(strcmp(temp->name,"DECLARATIONSTMT")==0){
@@ -284,10 +293,40 @@ symbolTable buildST(astNode root){
     return stAns;
 }
 
+int inHt(char* var_name,symbolTable st){
+    st_hashTable ht = st->ht;
+    int i=0;
+    stNode temp;
+    for(i=0;i<ht->size;i++){
+        if(ht->s[i]){
+            temp=ht->s[i];
+            while(temp!=NULL){
+                if(strcmp(temp->var_name,var_name)==0){
+                    return 1;
+                }
+                temp=temp->next;
+            }
+        }
+    }
+    return 0;
+}
+
+char* staticParent(symbolTable st,char* varname){
+    symbolTable temp=st;
+    while(temp!=NULL){
+        if(inHt(varname,temp)){
+            return temp->ht->scope;
+        }
+        temp=temp->par;
+    }
+    return NULL;
+}
+
 int compare(const void* s1,const void* s2){
     return ((stNode*)s1)[0]->offset - ((stNode*)s2)[0]->offset;
 }
 
+int level =1;
 void printHash(symbolTable st){
     st_hashTable ht = st->ht;
     int i=0;
@@ -316,10 +355,41 @@ void printHash(symbolTable st){
     qsort(res,s,sizeof(stNode),compare);
     for(i=0;i<s;i++){
         if(strcmp(res[i]->type,"MATRIX")==0){
-            printf("%-20s %-20s %-8s [%d , %d]     %-10d\n",res[i]->var_name,ht->scope,res[i]->type,res[i]->mat->x,res[i]->mat->y,res[i]->offset);
+            if(i!=s-1){
+                if(st->par==NULL){
+                    printf("%-20s %-20s %-13d %-20s %-8s [%d , %d]     %-10d %-10d\n",res[i]->var_name,ht->scope,level,"NULL",res[i]->type,res[i]->mat->x,res[i]->mat->y,res[i+1]->offset-res[i]->offset,res[i]->offset);
+                }
+                else{
+                    printf("%-20s %-20s %-13d %-20s %-8s [%d , %d]     %-10d %-10d\n",res[i]->var_name,ht->scope,level,st->par->ht->scope,res[i]->type,res[i]->mat->x,res[i]->mat->y,res[i+1]->offset-res[i]->offset,res[i]->offset);                
+                }
+            }
+            else{ 
+                if(st->par){
+                    printf("%-20s %-20s %-13d %-20s %-8s [%d , %d]     %-10d %-10d\n",res[i]->var_name,ht->scope,level,st->par->ht->scope,res[i]->type,res[i]->mat->x,res[i]->mat->y,st->last_offset-res[i]->offset,res[i]->offset);            
+                } 
+                else{
+                    printf("%-20s %-20s %-13d %-20s %-8s [%d , %d]     %-10d %-10d\n",res[i]->var_name,ht->scope,level,"NULL",res[i]->type,res[i]->mat->x,res[i]->mat->y,st->last_offset-res[i]->offset,res[i]->offset);            
+                }
+            }
         }
         else{
-            printf("%-20s %-20s %-20s %-10d\n",res[i]->var_name,ht->scope,res[i]->type,res[i]->offset);
+            if(i!=s-1){
+                if(st->par){
+                printf("%-20s %-20s %-13d %-20s %-20s %-10d %-10d\n",res[i]->var_name,ht->scope,level,st->par->ht->scope,res[i]->type,res[i+1]->offset-res[i]->offset,res[i]->offset);
+                }
+                else{
+                printf("%-20s %-20s %-13d %-20s %-20s %-10d %-10d\n",res[i]->var_name,ht->scope,level,"NULL",res[i]->type,res[i+1]->offset-res[i]->offset,res[i]->offset);
+                }
+            }
+            else{
+                if(st->par)
+                {
+                printf("%-20s %-20s %-13d %-20s %-20s %-10d %-10d\n",res[i]->var_name,ht->scope,level,st->par->ht->scope,res[i]->type,st->last_offset-res[i]->offset,res[i]->offset);                
+                }
+                else{
+                printf("%-20s %-20s %-13d %-20s %-20s %-10d %-10d\n",res[i]->var_name,ht->scope,level,"NULL",res[i]->type,st->last_offset-res[i]->offset,res[i]->offset);                
+                }
+            }
         }
     }
 }
@@ -328,14 +398,20 @@ void printST1(symbolTable st){
     symbolTable temp=st;
     while(temp!=NULL){
         printHash(temp);
+        level++;
         printST1(temp->children);
+        level--;
         temp=temp->next;
     }
 }
-
 void printST(symbolTable st){
-    printf("---------------------------------------------------------------------\n");
-    printf("%-20s %-20s %-20s %-10s\n","Identifier Name","SCOPE","TYPE","OFFSET");
-    printf("---------------------------------------------------------------------\n");    
+    printf("-----------------------------------------------------------------------------------------------------------------------\n");
+    printf("%-20s %-20s %-10s %-20s %-20s %-10s %-10s\n","Identifier Name","SCOPE","NestingLevel","Static Parent","TYPE","WIDTH","OFFSET");
+    printf("-----------------------------------------------------------------------------------------------------------------------\n");    
     printST1(st);
+}
+
+
+astNode typeChecker(astNode ast,symbolTable root){
+
 }

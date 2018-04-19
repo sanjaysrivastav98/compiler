@@ -1,0 +1,21 @@
+Line No. 14: Syntax Error :  Token received SQO failed to meet the expected syntax. Checking for recovery from Synchronizing Set
+Line No. 14: Syntax Error : The token COMMA for lexeme , does not match at line 14. The expected token here is CL. Terminal Inserted and Parsing Continued
+Line No. 14: Syntax Error :  Token received NUM failed to meet the expected syntax. Checking for recovery from Synchronizing Set
+Line No. 14: Syntax Error :  Token received SQO failed to meet the expected syntax. Checking for recovery from Synchronizing Set
+Line No. 14: Syntax Error : The token COMMA for lexeme , does not match at line 14. The expected token here is CL. Terminal Inserted and Parsing Continued
+Line No. 14: Syntax Error : The token NUM for lexeme 3 does not match at line 14. The expected token here is CL. Terminal Inserted and Parsing Continued
+Line No. 14: Syntax Error :  Token received SQC failed to meet the expected syntax. Checking for recovery from Synchronizing Set
+Line No. 15: Syntax Error :  Token received SQO failed to meet the expected syntax. Checking for recovery from Synchronizing Set
+Line No. 15: Syntax Error : The token COMMA for lexeme , does not match at line 15. The expected token here is CL. Terminal Inserted and Parsing Continued
+Line No. 15: Syntax Error :  Token received NUM failed to meet the expected syntax. Checking for recovery from Synchronizing Set
+Line No. 15: Syntax Error :  Token received SQO failed to meet the expected syntax. Checking for recovery from Synchronizing Set
+Line No. 15: Syntax Error : The token COMMA for lexeme , does not match at line 15. The expected token here is CL. Terminal Inserted and Parsing Continued
+Line No. 15: Syntax Error : The token NUM for lexeme 3 does not match at line 15. The expected token here is CL. Terminal Inserted and Parsing Continued
+Line No. 15: Syntax Error :  Token received SQC failed to meet the expected syntax. Checking for recovery from Synchronizing Set
+Line No. 16: Syntax Error :  Token received SQO failed to meet the expected syntax. Checking for recovery from Synchronizing Set
+Line No. 16: Syntax Error : The token COMMA for lexeme , does not match at line 16. The expected token here is CL. Terminal Inserted and Parsing Continued
+Line No. 16: Syntax Error :  Token received NUM failed to meet the expected syntax. Checking for recovery from Synchronizing Set
+Line No. 16: Syntax Error :  Token received SQO failed to meet the expected syntax. Checking for recovery from Synchronizing Set
+Line No. 16: Syntax Error : The token COMMA for lexeme , does not match at line 16. The expected token here is CL. Terminal Inserted and Parsing Continued
+Line No. 16: Syntax Error : The token NUM for lexeme 2 does not match at line 16. The expected token here is CL. Terminal Inserted and Parsing Continued
+Line No. 16: Syntax Error :  Token received SQC failed to meet the expected syntax. Checking for recovery from Synchronizing Set

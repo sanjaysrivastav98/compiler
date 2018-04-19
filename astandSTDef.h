@@ -28,6 +28,8 @@ typedef struct symboltable{
     st_hashTable ht;
     struct symboltable* next;
     struct symboltable* children;
+    struct symboltable* par;
+    int last_offset;
 }symboltable;
 
 typedef struct symboltable* symbolTable;

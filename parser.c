@@ -14,7 +14,7 @@ char** lhsAndRhs(char* line){
 		res[0][i]=temp[i];
 		if(temp[i]==' ' && temp[i+1]=='='&& temp[i+2]=='=' && temp[i+3]=='=' && temp[i+4]=='>' && temp[i+5]==' '){
 			res[0][i]='\0';
-			strcat(res[1],&line[i+6]);
+			strcpy(res[1],&line[i+6]);
 			break;
 		}		
 		i++;
@@ -235,7 +235,7 @@ Grammar readGrammar(){
 		}
 		hashMap_nt[i]=-1;
 		if(i<44)
-		map_nt[i]=NULL;
+			map_nt[i]=NULL;
 	}
 	map_t[39]=(char*)malloc(2);
 	strcpy(map_t[39],"$");
@@ -900,7 +900,7 @@ parseTree pred_parsing(tokenList tk,parseTable M,Grammar g,unsigned long int* sy
 					s=pop(s);
 				}
 				else{
-					printf("Line No. %d: Syntax Error : The token %s for lexeme %s does not match at line %d. The expected token here is %s. Terminal Inserted and Parsing Continued\n",a->line_no,a->token_id,a->value,a->line_no,map_t[h1]);
+					fprintf(errorFile,"Line No. %d: Syntax Error : The token %s for lexeme %s does not match at line %d. The expected token here is %s. Terminal Inserted and Parsing Continued\n",a->line_no,a->token_id,a->value,a->line_no,map_t[h1]);
 					error++;
 					s=pop(s);
 					// error();
@@ -914,7 +914,7 @@ parseTree pred_parsing(tokenList tk,parseTable M,Grammar g,unsigned long int* sy
 			break;
 		}
 		else if(M[h1][h3]==NULL){
-			printf("Line No. %d: Syntax Error :  Token received %s failed to meet the expected syntax. Checking for recovery from Synchronizing Set\n",a->line_no,a->token_id);
+			fprintf(errorFile,"Line No. %d: Syntax Error :  Token received %s failed to meet the expected syntax. Checking for recovery from Synchronizing Set\n",a->line_no,a->token_id);
 			error++;
 			if(in(eps,synch[h1])==1){
 				// printf("hgkblkkl\n");

@@ -246,28 +246,64 @@ astNode newLeafDualSp(parseTree p){
 
 astNode newNodeDualSp(parseTree p){
     parseTree tempParse = p->children;
-    astNode tempParseAns = (astNode)malloc(sizeof(astnode));
-    char* str = map_nt[p->n->num]; 
-    tempParseAns->name = (char*)malloc(sizeof(char)*(-1+strlen(str)));
-    int i=0,j=0;
-    for(i=0;i<strlen(str);i++){
-        if(isalpha(str[i])){
-            tempParseAns->name[j]=toupper(str[i]);j++;
-        }
+    if(tempParse->next->n->isTerminal=='f' && tempParse->next->children->n->isTerminal=='t' && tempParse->next->children->n->num==4){
+        astNode tempParseAns = (astNode)malloc(sizeof(astnode));
+        tempParseAns->next=NULL;
+        tempParseAns->par=NULL;
+        tempParseAns->children = NULL;
+        tempParseAns->name = (char*)malloc(sizeof(char)*(1+strlen(tempParse->tk->token_id)));
+        strcpy(tempParseAns->name,tempParse->tk->token_id);
+        tempParseAns->p = tempParse;
+        return tempParseAns;
+
     }
-    tempParseAns->next=NULL;
-    tempParseAns->par=NULL;
-    tempParseAns->children = (astNode)malloc(sizeof(astnode));
-    astNode tempParseAns1=tempParseAns;
-    tempParseAns=tempParseAns->children;
-    tempParseAns->children=NULL;
-    tempParseAns->par=NULL;
-    tempParseAns->name = (char*)malloc(sizeof(char)*(1+strlen(tempParse->tk->token_id)));
-    strcpy(tempParseAns->name,tempParse->tk->token_id);
-    tempParseAns->p = tempParse;
-    if(tempParse->next->next!=NULL)
-        tempParseAns->next = buildAstTree(tempParse->next->next);
-    return tempParseAns1;
+    else if(tempParse->next->n->isTerminal=='f'){
+        astNode tempParseAns = (astNode)malloc(sizeof(astnode));
+        char* str = map_nt[p->n->num]; 
+        tempParseAns->name = (char*)malloc(sizeof(char)*(-1+strlen(str)));
+        int i=0,j=0;
+        for(i=0;i<strlen(str);i++){
+            if(isalpha(str[i])){
+                tempParseAns->name[j]=toupper(str[i]);j++;
+            }
+        }
+        tempParseAns->next=NULL;
+        tempParseAns->par=NULL;
+        tempParseAns->children = (astNode)malloc(sizeof(astnode));
+        astNode tempParseAns1=tempParseAns;
+        tempParseAns=tempParseAns->children;
+        tempParseAns->children=NULL;
+        tempParseAns->par=NULL;
+        tempParseAns->name = (char*)malloc(sizeof(char)*(1+strlen(tempParse->tk->token_id)));
+        strcpy(tempParseAns->name,tempParse->tk->token_id);
+        tempParseAns->p = tempParse;
+        tempParseAns->next = buildAstTree(tempParse->next);
+        return tempParseAns1;
+    }
+    else{
+        astNode tempParseAns = (astNode)malloc(sizeof(astnode));
+        char* str = map_nt[p->n->num]; 
+        tempParseAns->name = (char*)malloc(sizeof(char)*(-1+strlen(str)));
+        int i=0,j=0;
+        for(i=0;i<strlen(str);i++){
+            if(isalpha(str[i])){
+                tempParseAns->name[j]=toupper(str[i]);j++;
+            }
+        }
+        tempParseAns->next=NULL;
+        tempParseAns->par=NULL;
+        tempParseAns->children = (astNode)malloc(sizeof(astnode));
+        astNode tempParseAns1=tempParseAns;
+        tempParseAns=tempParseAns->children;
+        tempParseAns->children=NULL;
+        tempParseAns->par=NULL;
+        tempParseAns->name = (char*)malloc(sizeof(char)*(1+strlen(tempParse->tk->token_id)));
+        strcpy(tempParseAns->name,tempParse->tk->token_id);
+        tempParseAns->p = tempParse;
+        if(tempParse->next->next!=NULL)
+            tempParseAns->next = buildAstTree(tempParse->next->next);
+        return tempParseAns1;
+    }   
 }
 
 astNode newNodeBool(parseTree p){
@@ -403,18 +439,20 @@ astNode newNodeTerm(parseTree p){
         tempParseAns=(astNode)malloc(sizeof(astnode));
         tempParseAns->name=(char*)malloc(sizeof(char)*4);
         strcpy(tempParseAns->name,"MUL");
+        tempParseAns->p=NULL;
         tempParseAns->children=newNodeFactor(tempParse);
         tempParseAns1=tempParseAns;
         tempParseAns=tempParseAns->children;
         while(tempParseAns->next!=NULL){
             tempParseAns=tempParseAns->next;
         }
-        tempParseAns->next=buildAstTree(tempParse->next->children->next);
+        tempParseAns->next=newNodeTerm(tempParse->next->children->next);
         return tempParseAns1;
     }
     else{
         tempParseAns=(astNode)malloc(sizeof(astnode));
         tempParseAns->name=(char*)malloc(sizeof(char)*4);
+        tempParseAns->p=NULL;
         strcpy(tempParseAns->name,"DIV");
         tempParseAns->children=newNodeFactor(tempParse);
         tempParseAns1=tempParseAns;
@@ -422,7 +460,7 @@ astNode newNodeTerm(parseTree p){
         while(tempParseAns->next!=NULL){
             tempParseAns=tempParseAns->next;
         }
-        tempParseAns->next=buildAstTree(tempParse->next->children->next);
+        tempParseAns->next=newNodeTerm(tempParse->next->children->next);
         return tempParseAns1;
     }
 } 
@@ -436,6 +474,7 @@ astNode newNodeArith(parseTree p){
     if(strcmp(tempParse->next->children->children->tk->token_id,"PLUS")==0){
         tempParseAns=(astNode)malloc(sizeof(astnode));
         tempParseAns->name=(char*)malloc(sizeof(char)*5);
+        tempParseAns->p=NULL;
         strcpy(tempParseAns->name,"PLUS");
         tempParseAns->children=newNodeTerm(tempParse);
         tempParseAns1=tempParseAns;
@@ -451,6 +490,7 @@ astNode newNodeArith(parseTree p){
         tempParseAns->name=(char*)malloc(sizeof(char)*6);
         strcpy(tempParseAns->name,"MINUS");
         tempParseAns->children=newNodeTerm(tempParse);
+        tempParseAns->p=NULL;
         tempParseAns1=tempParseAns;
         tempParseAns=tempParseAns->children;
         while(tempParseAns->next!=NULL){
@@ -462,6 +502,7 @@ astNode newNodeArith(parseTree p){
 }
 
 astNode buildAstTree(parseTree p){
+    
     int m=244,n=186;
     parseTree tempParse = p;
     astNode tempParseAns1=NULL,tempParseAns=NULL;
@@ -528,6 +569,7 @@ astNode buildAstTree(parseTree p){
         }
     }
     else if(numChil[0]==1 && numChil[1]==1){
+        // printf("%s\n",map_nt[p->n->num]);
         if(isSpecialNT(tempParse)){
             return newLeafDualSp(tempParse);
         }
@@ -556,6 +598,7 @@ void printAstTree1(astNode ast){
         tempParse=tempParse->next;
     }
 }
+
 void printAstTree(astNode ast){
     printf("------------------------------------------------------------------------------------\n");
     printf("%-30s %-30s %-30s\n","TOKEN","NAME","PARENT");

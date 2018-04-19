@@ -34,5 +34,5 @@ typedef struct keyword{
 typedef keyword* keyWord;
 
 keyWord keyHash[33];
-
+extern FILE* errorFile;
 int error;

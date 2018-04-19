@@ -14,7 +14,7 @@
 <rightHandSide> ===> <arithmeticExpression>|<sizeExpression>|<functionCall>
 <leftHandSide> ===> SQO <var_list> SQC
 <sizeCallStmt> ===> <sizeExpression> SEMICOLON
-<conditionalStmt> ===> IF OP <booleanExpression> CL <stmt> <otherStmts> <elseORend>
+<conditionalStmt> ===> IF OP <booleanExpression> CL <stmt> <otherStmts> <elseORend> SEMICOLON
 <elseORend> ===> ELSE <otherStmts> ENDIF|ENDIF
 <otherStmts> ===> <stmt> <otherStmts>|eps
 <ioStmt> ===> READ OP ID CL SEMICOLON|PRINT OP ID CL SEMICOLON

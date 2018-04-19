@@ -426,7 +426,7 @@ tokenList tokenize(FILE* fp,tokenList tkList){
 				}
 				else{
 					error++;
-					printf("Line No. %d:Lexical Error : Unknown pattern. Expected '=' but given %c\n",line_no,*forward);state=1;begin=forward;break;
+					fprintf(errorFile,"Line No. %d:Lexical Error : Unknown pattern. Expected '=' but given %c\n",line_no,*forward);state=1;begin=forward;break;
 				}
 				break;
 			case 6:
@@ -459,7 +459,7 @@ tokenList tokenize(FILE* fp,tokenList tkList){
 				else{
 					i--;
 					error++;
-					printf("Line No. %d:Lexical Error : Unknown pattern. Expected alphabet but given %c\n",line_no,*forward);state=1;begin=forward;break;
+					fprintf(errorFile,"Line No. %d:Lexical Error : Unknown pattern. Expected alphabet but given %c\n",line_no,*forward);state=1;begin=forward;break;
 				}
 				break;
 			case 10:
@@ -514,7 +514,7 @@ tokenList tokenize(FILE* fp,tokenList tkList){
 				temp_token=fillStruct(begin,forward,valuebuffer,"ID",line_no);
 				if(temp_token==NULL){
 					error++;
-					printf("Line No. %d:Lexical Error : Identifier is longer than the prescribed length\n",line_no);
+					fprintf(errorFile,"Line No. %d:Lexical Error : Identifier is longer than the prescribed length\n",line_no);
 				}
 				else{
 					tkList=addtoTkList(temp_token,tkList);
@@ -560,7 +560,7 @@ tokenList tokenize(FILE* fp,tokenList tkList){
 				else{
 					i--;
 					error++;
-					printf("Line No. %d:Lexical Error : Unknown pattern '%s'\n",line_no,extractWord(begin,forward,valuebuffer));state=1;begin=forward;break;
+					fprintf(errorFile,"Line No. %d:Lexical Error : Unknown pattern '%s'\n",line_no,extractWord(begin,forward,valuebuffer));state=1;begin=forward;break;
 				}
 				break;
 			case 17:
@@ -572,7 +572,7 @@ tokenList tokenize(FILE* fp,tokenList tkList){
 				else{
 					i--;
 					error++;
-					printf("Line No. %d:Lexical Error : Unkown Pattern '%s'\n",line_no,extractWord(begin,forward,valuebuffer));state=1;begin=forward;break;
+					fprintf(errorFile,"Line No. %d:Lexical Error : Unkown Pattern '%s'\n",line_no,extractWord(begin,forward,valuebuffer));state=1;begin=forward;break;
 				}
 				break;
 			case 18:
@@ -598,7 +598,7 @@ tokenList tokenize(FILE* fp,tokenList tkList){
 				else{
 					i--;
 					error++;
-					printf("Line No. %d:Lexical Error : Unknown pattern '%s'\n",line_no,extractWord(begin,forward,valuebuffer));state=1;begin=forward;break;
+					fprintf(errorFile,"Line No. %d:Lexical Error : Unknown pattern '%s'\n",line_no,extractWord(begin,forward,valuebuffer));state=1;begin=forward;break;
 				}break;
 			case 21:
 				if ((*forward >='a' && *forward <='z') || (*forward==' ')){
@@ -613,13 +613,13 @@ tokenList tokenize(FILE* fp,tokenList tkList){
 				}
 				else{
 					error++;
-					printf("Line No. %d:Lexical Error : Unknown pattern '%s'\n",line_no,extractWord(begin,forward,valuebuffer));state=1;begin=forward;break;
+					fprintf(errorFile,"Line No. %d:Lexical Error : Unknown pattern '%s'\n",line_no,extractWord(begin,forward,valuebuffer));state=1;begin=forward;break;
 				}break;
 			case 22:
 				temp_token=fillStruct(begin,forward,valuebuffer,"STR",line_no);
 				if(temp_token==NULL){
 					error++;
-					printf("Line No. %d:Lexical Error : Identifier is longer than the prescribed length\n",line_no);
+					fprintf(errorFile,"Line No. %d:Lexical Error : Identifier is longer than the prescribed length\n",line_no);
 				}
 				else{
 					tkList=addtoTkList(temp_token,tkList);
@@ -713,7 +713,7 @@ tokenList tokenize(FILE* fp,tokenList tkList){
 				else{
 					i--;
 					error++;
-					printf("Line No. %d:Lexical Error : Unknown Pattern '%s'\n",line_no,extractWord(begin,forward,valuebuffer));state=1;begin=forward;break;
+					fprintf(errorFile,"Line No. %d:Lexical Error : Unknown Pattern '%s'\n",line_no,extractWord(begin,forward,valuebuffer));state=1;begin=forward;break;
 				}
 			case 35:
 				if (*forward=='n'){
@@ -724,7 +724,7 @@ tokenList tokenize(FILE* fp,tokenList tkList){
 				else{
 					i--;
 					error++;
-					printf("Line No. %d:Lexical Error : Unknown pattern '%s'\n",line_no,extractWord(begin,forward,valuebuffer));state=1;begin=forward;break;
+					fprintf(errorFile,"Line No. %d:Lexical Error : Unknown pattern '%s'\n",line_no,extractWord(begin,forward,valuebuffer));state=1;begin=forward;break;
 				}
 			case 36:
 				if(*forward=='d'){
@@ -735,7 +735,7 @@ tokenList tokenize(FILE* fp,tokenList tkList){
 				else{
 					i--;
 					error++;
-					printf("Line No. %d:Lexical Error : Unknown pattern '%s'\n",line_no,extractWord(begin,forward,valuebuffer));state=1;begin=forward;break;
+					fprintf(errorFile,"Line No. %d:Lexical Error : Unknown pattern '%s'\n",line_no,extractWord(begin,forward,valuebuffer));state=1;begin=forward;break;
 				}break;
 			case 37:
 				if(*forward=='.'){
@@ -746,7 +746,7 @@ tokenList tokenize(FILE* fp,tokenList tkList){
 				else{
 					i--;
 					error++;
-					printf("Line No. %d:Lexical Error : Unknown pattern '%s'\n",line_no,extractWord(begin,forward,valuebuffer));state=1;begin=forward;break;
+					fprintf(errorFile,"Line No. %d:Lexical Error : Unknown pattern '%s'\n",line_no,extractWord(begin,forward,valuebuffer));state=1;begin=forward;break;
 				}break;
 			case 38:
 				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"AND",line_no),tkList);
@@ -763,7 +763,7 @@ tokenList tokenize(FILE* fp,tokenList tkList){
 				else{
 					i--;
 					error++;
-					printf("Line No. %d:Lexical Error : Unknown pattern '%s'\n",line_no,extractWord(begin,forward,valuebuffer));state=1;begin=forward;break;
+					fprintf(errorFile,"Line No. %d:Lexical Error : Unknown pattern '%s'\n",line_no,extractWord(begin,forward,valuebuffer));state=1;begin=forward;break;
 				}break;
 			case 40:
 				if(*forward=='.'){
@@ -774,7 +774,7 @@ tokenList tokenize(FILE* fp,tokenList tkList){
 				else{
 					i--;
 					error++;
-					printf("Line No. %d:Lexical Error : Unknown pattern '%s'\n",line_no,extractWord(begin,forward,valuebuffer));state=1;begin=forward;break;
+					fprintf(errorFile,"Line No. %d:Lexical Error : Unknown pattern '%s'\n",line_no,extractWord(begin,forward,valuebuffer));state=1;begin=forward;break;
 				}break;
 			case 41:
 				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"OR",line_no),tkList);
@@ -791,7 +791,7 @@ tokenList tokenize(FILE* fp,tokenList tkList){
 				else{
 					i--;
 					error++;
-					printf("Line No. %d:Lexical Error : Unknown pattern '%s'\n",line_no,extractWord(begin,forward,valuebuffer));state=1;begin=forward;break;
+					fprintf(errorFile,"Line No. %d:Lexical Error : Unknown pattern '%s'\n",line_no,extractWord(begin,forward,valuebuffer));state=1;begin=forward;break;
 				}break;
 			case 43:
 				if(*forward=='t'){
@@ -802,7 +802,7 @@ tokenList tokenize(FILE* fp,tokenList tkList){
 				else{
 					i--;
 					error++;
-					printf("Line No. %d:Lexical Error : Unknown pattern '%s'\n",line_no,extractWord(begin,forward,valuebuffer));state=1;begin=forward;break;
+					fprintf(errorFile,"Line No. %d:Lexical Error : Unknown pattern '%s'\n",line_no,extractWord(begin,forward,valuebuffer));state=1;begin=forward;break;
 				}break;
 			case 44:
 				if(*forward=='.'){
@@ -813,7 +813,7 @@ tokenList tokenize(FILE* fp,tokenList tkList){
 				else{
 					i--;
 					error++;
-					printf("Line No. %d:Lexical Error : Unknown pattern '%s'\n",line_no,extractWord(begin,forward,valuebuffer));state=1;begin=forward;break;
+					fprintf(errorFile,"Line No. %d:Lexical Error : Unknown pattern '%s'\n",line_no,extractWord(begin,forward,valuebuffer));state=1;begin=forward;break;
 				}break;
 			case 45:
 				tkList=addtoTkList(fillStruct(begin,forward,valuebuffer,"NOT",line_no),tkList);
