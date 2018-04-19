@@ -1,0 +1,252 @@
+<mainFunction>:{
+	MAIN:MAIN SQO SQC <stmtOrFunctionDef> <stmtsAndFunctionDefs> END ,
+}
+<stmtOrFunctionDef>:{
+	SQO:<stmt> ,
+	FUNCTION:<functionDef> ,
+	FUNID:<stmt> ,
+	ID:<stmt> ,
+	INT:<stmt> ,
+	REAL:<stmt> ,
+	STRING:<stmt> ,
+	MATRIX:<stmt> ,
+	IF:<stmt> ,
+	READ:<stmt> ,
+	PRINT:<stmt> ,
+}
+<stmtsAndFunctionDefs>:{
+	SQO:<stmtOrFunctionDef> <stmtsAndFunctionDefs> ,
+	END:eps ,
+	FUNCTION:<stmtOrFunctionDef> <stmtsAndFunctionDefs> ,
+	FUNID:<stmtOrFunctionDef> <stmtsAndFunctionDefs> ,
+	ID:<stmtOrFunctionDef> <stmtsAndFunctionDefs> ,
+	INT:<stmtOrFunctionDef> <stmtsAndFunctionDefs> ,
+	REAL:<stmtOrFunctionDef> <stmtsAndFunctionDefs> ,
+	STRING:<stmtOrFunctionDef> <stmtsAndFunctionDefs> ,
+	MATRIX:<stmtOrFunctionDef> <stmtsAndFunctionDefs> ,
+	IF:<stmtOrFunctionDef> <stmtsAndFunctionDefs> ,
+	READ:<stmtOrFunctionDef> <stmtsAndFunctionDefs> ,
+	PRINT:<stmtOrFunctionDef> <stmtsAndFunctionDefs> ,
+}
+<stmt>:{
+	SQO:<leftHandSide> ASSIGNOP <funCallORsizeCallStmt> ,
+	FUNID:<funCallStmt> ,
+	ID:<assignmentStmt> ,
+	INT:<declarationStmt> ,
+	REAL:<declarationStmt> ,
+	STRING:<declarationStmt> ,
+	MATRIX:<declarationStmt> ,
+	IF:<conditionalStmt> ,
+	READ:<ioStmt> ,
+	PRINT:<ioStmt> ,
+}
+<functionDef>:{
+	FUNCTION:FUNCTION SQO <parameter_list> SQC ASSIGNOP FUNID SQO <parameter_list> SQC <stmtOrFunctionDef> <stmtsAndFunctionDefs> END SEMICOLON ,
+}
+<declarationStmt>:{
+	INT:<type> <var_list> SEMICOLON ,
+	REAL:<type> <var_list> SEMICOLON ,
+	STRING:<type> <var_list> SEMICOLON ,
+	MATRIX:<type> <var_list> SEMICOLON ,
+}
+<assignmentStmt>:{
+	ID:ID ASSIGNOP <rightHandSide> SEMICOLON ,
+}
+<conditionalStmt>:{
+	IF:IF OP <booleanExpression> CL <stmt> <otherStmts> <elseORend> ,
+}
+<ioStmt>:{
+	READ:READ OP ID CL SEMICOLON ,
+	PRINT:PRINT OP ID CL SEMICOLON ,
+}
+<leftHandSide>:{
+	SQO:SQO <var_list> SQC ,
+}
+<funCallORsizeCallStmt>:{
+	FUNID:<funCallStmt> ,
+	SIZE:<sizeCallStmt> ,
+}
+<funCallStmt>:{
+	FUNID:<functionCall> SEMICOLON ,
+}
+<sizeCallStmt>:{
+	SIZE:<sizeExpression> SEMICOLON ,
+}
+<parameter_list>:{
+	INT:<type> ID <remainingList> ,
+	REAL:<type> ID <remainingList> ,
+	STRING:<type> ID <remainingList> ,
+	MATRIX:<type> ID <remainingList> ,
+}
+<type>:{
+	INT:INT ,
+	REAL:REAL ,
+	STRING:STRING ,
+	MATRIX:MATRIX ,
+}
+<remainingList>:{
+	SQC:eps ,
+	COMMA:COMMA <parameter_list> ,
+}
+<var_list>:{
+	ID:ID <more_ids> ,
+}
+<more_ids>:{
+	SQC:eps ,
+	SEMICOLON:eps ,
+	COMMA:COMMA <var_list> ,
+}
+<rightHandSide>:{
+	SQO:<arithmeticExpression> ,
+	FUNID:<functionCall> ,
+	ID:<arithmeticExpression> ,
+	OP:<arithmeticExpression> ,
+	SIZE:<sizeExpression> ,
+	NUM:<arithmeticExpression> ,
+	RNUM:<arithmeticExpression> ,
+	STR:<arithmeticExpression> ,
+}
+<arithmeticExpression>:{
+	SQO:<term> <arithmeticExpression1> ,
+	ID:<term> <arithmeticExpression1> ,
+	OP:<term> <arithmeticExpression1> ,
+	NUM:<term> <arithmeticExpression1> ,
+	RNUM:<term> <arithmeticExpression1> ,
+	STR:<term> <arithmeticExpression1> ,
+}
+<sizeExpression>:{
+	SIZE:SIZE ID ,
+}
+<functionCall>:{
+	FUNID:FUNID OP <var_list1> CL ,
+}
+<booleanExpression>:{
+	ID:<constrainedVars> <relationalOp> <constrainedVars> ,
+	OP:OP <booleanExpression> CL <logicalOp> OP <booleanExpression> CL ,
+	NOT:NOT OP <booleanExpression> CL ,
+	NUM:<constrainedVars> <relationalOp> <constrainedVars> ,
+	RNUM:<constrainedVars> <relationalOp> <constrainedVars> ,
+}
+<otherStmts>:{
+	SQO:<stmt> <otherStmts> ,
+	FUNID:<stmt> <otherStmts> ,
+	ID:<stmt> <otherStmts> ,
+	INT:<stmt> <otherStmts> ,
+	REAL:<stmt> <otherStmts> ,
+	STRING:<stmt> <otherStmts> ,
+	MATRIX:<stmt> <otherStmts> ,
+	IF:<stmt> <otherStmts> ,
+	ELSE:eps ,
+	ENDIF:eps ,
+	READ:<stmt> <otherStmts> ,
+	PRINT:<stmt> <otherStmts> ,
+}
+<elseORend>:{
+	ELSE:ELSE <otherStmts> ENDIF ,
+	ENDIF:ENDIF ,
+}
+<var_list1>:{
+	SQO:<var> <list_var> ,
+	ID:<var> <list_var> ,
+	NUM:<var> <list_var> ,
+	RNUM:<var> <list_var> ,
+	STR:<var> <list_var> ,
+}
+<var>:{
+	SQO:<IDORmatrixElement> ,
+	ID:<IDORmatrixElement> ,
+	NUM:NUM ,
+	RNUM:RNUM ,
+	STR:STR ,
+}
+<list_var>:{
+	COMMA:COMMA <var_list1> ,
+	CL:eps ,
+}
+<term>:{
+	SQO:<factor> <term1> ,
+	ID:<factor> <term1> ,
+	OP:<factor> <term1> ,
+	NUM:<factor> <term1> ,
+	RNUM:<factor> <term1> ,
+	STR:<factor> <term1> ,
+}
+<arithmeticExpression1>:{
+	SEMICOLON:eps ,
+	CL:eps ,
+	PLUS:<termOp> <arithmeticExpression> ,
+	MINUS:<termOp> <arithmeticExpression> ,
+}
+<termOp>:{
+	PLUS:PLUS ,
+	MINUS:MINUS ,
+}
+<factor>:{
+	SQO:<var> ,
+	ID:<var> ,
+	OP:OP <arithmeticExpression> CL ,
+	NUM:<var> ,
+	RNUM:<var> ,
+	STR:<var> ,
+}
+<term1>:{
+	SEMICOLON:eps ,
+	CL:eps ,
+	PLUS:eps ,
+	MINUS:eps ,
+	DIV:<factorOp> <term> ,
+	MUL:<factorOp> <term> ,
+}
+<factorOp>:{
+	DIV:DIV ,
+	MUL:MUL ,
+}
+<logicalOp>:{
+	AND:AND ,
+	OR:OR ,
+}
+<constrainedVars>:{
+	ID:ID ,
+	NUM:NUM ,
+	RNUM:RNUM ,
+}
+<relationalOp>:{
+	LT:LT ,
+	LE:LE ,
+	EQ:EQ ,
+	GT:GT ,
+	GE:GE ,
+	NE:NE ,
+}
+<IDORmatrixElement>:{
+	SQO:SQO <matrix1> ,
+	ID:ID <matrix2> ,
+}
+<matrix1>:{
+	NUM:<row> SQC ,
+}
+<matrix2>:{
+	SQO:SQO NUM COMMA NUM SQC ,
+	SEMICOLON:eps ,
+	COMMA:eps ,
+	CL:eps ,
+	PLUS:eps ,
+	MINUS:eps ,
+	DIV:eps ,
+	MUL:eps ,
+}
+<row>:{
+	NUM:<firstRow> <otherRows> ,
+}
+<firstRow>:{
+	NUM:NUM <otherEles> ,
+}
+<otherRows>:{
+	SQC:eps ,
+	SEMICOLON:SEMICOLON <row> ,
+}
+<otherEles>:{
+	SQC:eps ,
+	SEMICOLON:eps ,
+	COMMA:COMMA <firstRow> ,
+}

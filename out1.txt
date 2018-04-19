@@ -1,0 +1,1333 @@
+Enter an option:Line No. 26: Syntax Error :  Token received SEMICOLON failed to meet the expected syntax. Checking for recovery from Synchronizing Set
+-----------------------------------------------------------------
+Token ID            Token Value         Line Number         
+-----------------------------------------------------------------
+MAIN                _main               1                   
+SQO                 [                   1                   
+SQC                 ]                   1                   
+INT                 int                 2                   
+ID                  a                   2                   
+COMMA               ,                   2                   
+ID                  g                   2                   
+COMMA               ,                   2                   
+ID                  h                   2                   
+COMMA               ,                   2                   
+ID                  x                   2                   
+SEMICOLON           ;                   2                   
+REAL                real                3                   
+ID                  b                   3                   
+COMMA               ,                   3                   
+ID                  z                   3                   
+SEMICOLON           ;                   3                   
+MATRIX              matrix              4                   
+ID                  s                   4                   
+SEMICOLON           ;                   4                   
+INT                 int                 5                   
+ID                  u                   5                   
+COMMA               ,                   5                   
+ID                  v                   5                   
+SEMICOLON           ;                   5                   
+ID                  mat1                6                   
+ASSIGNOP            =                   6                   
+SQO                 [                   6                   
+NUM                 1                   6                   
+COMMA               ,                   6                   
+NUM                 2                   6                   
+COMMA               ,                   6                   
+NUM                 3                   6                   
+SEMICOLON           ;                   6                   
+NUM                 4                   6                   
+COMMA               ,                   6                   
+NUM                 5                   6                   
+COMMA               ,                   6                   
+NUM                 6                   6                   
+SEMICOLON           ;                   6                   
+NUM                 6                   6                   
+COMMA               ,                   6                   
+NUM                 7                   6                   
+COMMA               ,                   6                   
+NUM                 8                   6                   
+SQC                 ]                   6                   
+SEMICOLON           ;                   6                   
+ID                  s                   7                   
+ASSIGNOP            =                   7                   
+STR                 "abcd"              7                   
+SEMICOLON           ;                   7                   
+ID                  a                   8                   
+ASSIGNOP            =                   8                   
+NUM                 2                   8                   
+PLUS                +                   8                   
+NUM                 5                   8                   
+SEMICOLON           ;                   8                   
+ID                  b                   9                   
+ASSIGNOP            =                   9                   
+OP                  (                   9                   
+ID                  a                   9                   
+MINUS               -                   9                   
+NUM                 4                   9                   
+CL                  )                   9                   
+MUL                 *                   9                   
+OP                  (                   9                   
+NUM                 3                   9                   
+MINUS               -                   9                   
+NUM                 1                   9                   
+CL                  )                   9                   
+SEMICOLON           ;                   9                   
+ID                  g                   10                  
+ASSIGNOP            =                   10                  
+NUM                 10                  10                  
+SEMICOLON           ;                   10                  
+ID                  h                   11                  
+ASSIGNOP            =                   11                  
+NUM                 9                   11                  
+SEMICOLON           ;                   11                  
+ID                  u                   12                  
+ASSIGNOP            =                   12                  
+NUM                 12                  12                  
+SEMICOLON           ;                   12                  
+READ                read                13                  
+OP                  (                   13                  
+ID                  v                   13                  
+CL                  )                   13                  
+SEMICOLON           ;                   13                  
+FUNCTION            function            14                  
+SQO                 [                   14                  
+INT                 int                 14                  
+ID                  sum                 14                  
+COMMA               ,                   14                  
+INT                 int                 14                  
+ID                  diff                14                  
+SQC                 ]                   14                  
+ASSIGNOP            =                   14                  
+FUNID               _calculator         14                  
+SQO                 [                   14                  
+INT                 int                 14                  
+ID                  c                   14                  
+SQC                 ]                   14                  
+INT                 int                 15                  
+ID                  a                   15                  
+SEMICOLON           ;                   15                  
+ID                  a                   16                  
+ASSIGNOP            =                   16                  
+NUM                 1                   16                  
+SEMICOLON           ;                   16                  
+ID                  sum                 17                  
+ASSIGNOP            =                   17                  
+ID                  c                   17                  
+PLUS                +                   17                  
+ID                  b                   17                  
+SEMICOLON           ;                   17                  
+ID                  diff                18                  
+ASSIGNOP            =                   18                  
+ID                  c                   18                  
+MINUS               -                   18                  
+ID                  a                   18                  
+SEMICOLON           ;                   18                  
+END                 end                 19                  
+SEMICOLON           ;                   19                  
+ID                  z                   20                  
+ASSIGNOP            =                   20                  
+OP                  (                   20                  
+OP                  (                   20                  
+ID                  a                   20                  
+MINUS               -                   20                  
+ID                  g                   20                  
+CL                  )                   20                  
+MUL                 *                   20                  
+OP                  (                   20                  
+ID                  h                   20                  
+PLUS                +                   20                  
+ID                  u                   20                  
+CL                  )                   20                  
+CL                  )                   20                  
+PLUS                +                   20                  
+OP                  (                   20                  
+OP                  (                   20                  
+NUM                 13                  20                  
+MINUS               -                   20                  
+ID                  a                   20                  
+CL                  )                   20                  
+MUL                 *                   20                  
+OP                  (                   20                  
+ID                  u                   20                  
+PLUS                +                   20                  
+ID                  g                   20                  
+CL                  )                   20                  
+CL                  )                   20                  
+SEMICOLON           ;                   20                  
+ID                  g                   21                  
+ASSIGNOP            =                   21                  
+OP                  (                   21                  
+OP                  (                   21                  
+ID                  a                   21                  
+MINUS               -                   21                  
+ID                  g                   21                  
+CL                  )                   21                  
+MUL                 *                   21                  
+OP                  (                   21                  
+ID                  h                   21                  
+PLUS                +                   21                  
+ID                  u                   21                  
+CL                  )                   21                  
+CL                  )                   21                  
+MINUS               -                   21                  
+OP                  (                   21                  
+OP                  (                   21                  
+NUM                 10                  21                  
+PLUS                +                   21                  
+ID                  a                   21                  
+CL                  )                   21                  
+MUL                 *                   21                  
+OP                  (                   21                  
+ID                  u                   21                  
+PLUS                +                   21                  
+ID                  g                   21                  
+CL                  )                   21                  
+CL                  )                   21                  
+SEMICOLON           ;                   21                  
+IF                  if                  22                  
+OP                  (                   22                  
+ID                  g                   22                  
+GT                  >                   22                  
+NUM                 2                   22                  
+CL                  )                   22                  
+ID                  x                   23                  
+ASSIGNOP            =                   23                  
+NUM                 5                   23                  
+SEMICOLON           ;                   23                  
+ELSE                else                24                  
+ID                  x                   25                  
+ASSIGNOP            =                   25                  
+NUM                 10                  25                  
+SEMICOLON           ;                   25                  
+ENDIF               endif               26                  
+SEMICOLON           ;                   26                  
+IF                  if                  27                  
+OP                  (                   27                  
+ID                  g                   27                  
+LT                  <                   27                  
+NUM                 2                   27                  
+CL                  )                   27                  
+ID                  x                   28                  
+ASSIGNOP            =                   28                  
+NUM                 15                  28                  
+SEMICOLON           ;                   28                  
+ELSE                else                29                  
+ID                  x                   30                  
+ASSIGNOP            =                   30                  
+NUM                 20                  30                  
+SEMICOLON           ;                   30                  
+ENDIF               endif               31                  
+SEMICOLON           ;                   31                  
+END                 end                 32                  
+Enter an option:Compiled with errors
+-----------------------------------------------------------------------------------------------------------------
+lexemeCurrentNode   lineno   token			valueIfNumber  			parentNodeSymbol  			isLeaf  NodeSymbol
+-----------------------------------------------------------------------------------------------------------------
+_main                 1      MAIN               ----				<mainFunction>                yes	----
+----				----   	----				----				ROOT  						  no 	<mainFunction>                
+[                     1      SQO                ----				<mainFunction>                yes	----
+]                     1      SQC                ----				<mainFunction>                yes	----
+int                   2      INT                ----				<type>                        yes	----
+----				----   	----				----				<declarationStmt>             no 	<type>                        
+----				----   	----				----				<stmt>                        no 	<declarationStmt>             
+a                     2      ID                 ----				<var_list>                    yes	----
+----				----   	----				----				<declarationStmt>             no 	<var_list>                    
+,                     2      COMMA              ----				<more_ids>                    yes	----
+----				----   	----				----				<var_list>                    no 	<more_ids>                    
+g                     2      ID                 ----				<var_list>                    yes	----
+----				----   	----				----				<more_ids>                    no 	<var_list>                    
+,                     2      COMMA              ----				<more_ids>                    yes	----
+----				----   	----				----				<var_list>                    no 	<more_ids>                    
+h                     2      ID                 ----				<var_list>                    yes	----
+----				----   	----				----				<more_ids>                    no 	<var_list>                    
+,                     2      COMMA              ----				<more_ids>                    yes	----
+----				----   	----				----				<var_list>                    no 	<more_ids>                    
+x                     2      ID                 ----				<var_list>                    yes	----
+----				----   	----				----				<more_ids>                    no 	<var_list>                    
+eps  				----   	----				----				<more_ids>                    yes	----
+----				----   	----				----				<var_list>                    no 	<more_ids>                    
+;                     2      SEMICOLON          ----				<declarationStmt>             yes	----
+----				----   	----				----				<stmtOrFunctionDef>           no 	<stmt>                        
+----				----   	----				----				<mainFunction>                no 	<stmtOrFunctionDef>           
+real                  3      REAL               ----				<type>                        yes	----
+----				----   	----				----				<declarationStmt>             no 	<type>                        
+----				----   	----				----				<stmt>                        no 	<declarationStmt>             
+b                     3      ID                 ----				<var_list>                    yes	----
+----				----   	----				----				<declarationStmt>             no 	<var_list>                    
+,                     3      COMMA              ----				<more_ids>                    yes	----
+----				----   	----				----				<var_list>                    no 	<more_ids>                    
+z                     3      ID                 ----				<var_list>                    yes	----
+----				----   	----				----				<more_ids>                    no 	<var_list>                    
+eps  				----   	----				----				<more_ids>                    yes	----
+----				----   	----				----				<var_list>                    no 	<more_ids>                    
+;                     3      SEMICOLON          ----				<declarationStmt>             yes	----
+----				----   	----				----				<stmtOrFunctionDef>           no 	<stmt>                        
+----				----   	----				----				<stmtsAndFunctionDefs>        no 	<stmtOrFunctionDef>           
+----				----   	----				----				<mainFunction>                no 	<stmtsAndFunctionDefs>        
+matrix                4      MATRIX             ----				<type>                        yes	----
+----				----   	----				----				<declarationStmt>             no 	<type>                        
+----				----   	----				----				<stmt>                        no 	<declarationStmt>             
+s                     4      ID                 ----				<var_list>                    yes	----
+----				----   	----				----				<declarationStmt>             no 	<var_list>                    
+eps  				----   	----				----				<more_ids>                    yes	----
+----				----   	----				----				<var_list>                    no 	<more_ids>                    
+;                     4      SEMICOLON          ----				<declarationStmt>             yes	----
+----				----   	----				----				<stmtOrFunctionDef>           no 	<stmt>                        
+----				----   	----				----				<stmtsAndFunctionDefs>        no 	<stmtOrFunctionDef>           
+----				----   	----				----				<stmtsAndFunctionDefs>        no 	<stmtsAndFunctionDefs>        
+int                   5      INT                ----				<type>                        yes	----
+----				----   	----				----				<declarationStmt>             no 	<type>                        
+----				----   	----				----				<stmt>                        no 	<declarationStmt>             
+u                     5      ID                 ----				<var_list>                    yes	----
+----				----   	----				----				<declarationStmt>             no 	<var_list>                    
+,                     5      COMMA              ----				<more_ids>                    yes	----
+----				----   	----				----				<var_list>                    no 	<more_ids>                    
+v                     5      ID                 ----				<var_list>                    yes	----
+----				----   	----				----				<more_ids>                    no 	<var_list>                    
+eps  				----   	----				----				<more_ids>                    yes	----
+----				----   	----				----				<var_list>                    no 	<more_ids>                    
+;                     5      SEMICOLON          ----				<declarationStmt>             yes	----
+----				----   	----				----				<stmtOrFunctionDef>           no 	<stmt>                        
+----				----   	----				----				<stmtsAndFunctionDefs>        no 	<stmtOrFunctionDef>           
+----				----   	----				----				<stmtsAndFunctionDefs>        no 	<stmtsAndFunctionDefs>        
+mat1                  6      ID                 ----				<assignmentStmt>              yes	----
+----				----   	----				----				<stmt>                        no 	<assignmentStmt>              
+=                     6      ASSIGNOP           ----				<assignmentStmt>              yes	----
+[                     6      SQO                ----				<IDORmatrixElement>           yes	----
+----				----   	----				----				<var>                         no 	<IDORmatrixElement>           
+ 1                    6      NUM 				 1                  <firstRow>                    yes	----
+----				----   	----				----				<row>                         no 	<firstRow>                    
+,                     6      COMMA              ----				<otherEles>                   yes	----
+----				----   	----				----				<firstRow>                    no 	<otherEles>                   
+ 2                    6      NUM 				 2                  <firstRow>                    yes	----
+----				----   	----				----				<otherEles>                   no 	<firstRow>                    
+,                     6      COMMA              ----				<otherEles>                   yes	----
+----				----   	----				----				<firstRow>                    no 	<otherEles>                   
+ 3                    6      NUM 				 3                  <firstRow>                    yes	----
+----				----   	----				----				<otherEles>                   no 	<firstRow>                    
+eps  				----   	----				----				<otherEles>                   yes	----
+----				----   	----				----				<firstRow>                    no 	<otherEles>                   
+----				----   	----				----				<matrix1>                     no 	<row>                         
+;                     6      SEMICOLON          ----				<otherRows>                   yes	----
+----				----   	----				----				<row>                         no 	<otherRows>                   
+ 4                    6      NUM 				 4                  <firstRow>                    yes	----
+----				----   	----				----				<row>                         no 	<firstRow>                    
+,                     6      COMMA              ----				<otherEles>                   yes	----
+----				----   	----				----				<firstRow>                    no 	<otherEles>                   
+ 5                    6      NUM 				 5                  <firstRow>                    yes	----
+----				----   	----				----				<otherEles>                   no 	<firstRow>                    
+,                     6      COMMA              ----				<otherEles>                   yes	----
+----				----   	----				----				<firstRow>                    no 	<otherEles>                   
+ 6                    6      NUM 				 6                  <firstRow>                    yes	----
+----				----   	----				----				<otherEles>                   no 	<firstRow>                    
+eps  				----   	----				----				<otherEles>                   yes	----
+----				----   	----				----				<firstRow>                    no 	<otherEles>                   
+----				----   	----				----				<otherRows>                   no 	<row>                         
+;                     6      SEMICOLON          ----				<otherRows>                   yes	----
+----				----   	----				----				<row>                         no 	<otherRows>                   
+ 6                    6      NUM 				 6                  <firstRow>                    yes	----
+----				----   	----				----				<row>                         no 	<firstRow>                    
+,                     6      COMMA              ----				<otherEles>                   yes	----
+----				----   	----				----				<firstRow>                    no 	<otherEles>                   
+ 7                    6      NUM 				 7                  <firstRow>                    yes	----
+----				----   	----				----				<otherEles>                   no 	<firstRow>                    
+,                     6      COMMA              ----				<otherEles>                   yes	----
+----				----   	----				----				<firstRow>                    no 	<otherEles>                   
+ 8                    6      NUM 				 8                  <firstRow>                    yes	----
+----				----   	----				----				<otherEles>                   no 	<firstRow>                    
+eps  				----   	----				----				<otherEles>                   yes	----
+----				----   	----				----				<firstRow>                    no 	<otherEles>                   
+----				----   	----				----				<otherRows>                   no 	<row>                         
+eps  				----   	----				----				<otherRows>                   yes	----
+----				----   	----				----				<row>                         no 	<otherRows>                   
+----				----   	----				----				<IDORmatrixElement>           no 	<matrix1>                     
+]                     6      SQC                ----				<matrix1>                     yes	----
+----				----   	----				----				<factor>                      no 	<var>                         
+----				----   	----				----				<term>                        no 	<factor>                      
+----				----   	----				----				<arithmeticExpression>        no 	<term>                        
+eps  				----   	----				----				<term1>                       yes	----
+----				----   	----				----				<term>                        no 	<term1>                       
+----				----   	----				----				<rightHandSide>               no 	<arithmeticExpression>        
+eps  				----   	----				----				<arithmeticExpression1>       yes	----
+----				----   	----				----				<arithmeticExpression>        no 	<arithmeticExpression1>       
+----				----   	----				----				<assignmentStmt>              no 	<rightHandSide>               
+;                     6      SEMICOLON          ----				<assignmentStmt>              yes	----
+----				----   	----				----				<stmtOrFunctionDef>           no 	<stmt>                        
+----				----   	----				----				<stmtsAndFunctionDefs>        no 	<stmtOrFunctionDef>           
+----				----   	----				----				<stmtsAndFunctionDefs>        no 	<stmtsAndFunctionDefs>        
+s                     7      ID                 ----				<assignmentStmt>              yes	----
+----				----   	----				----				<stmt>                        no 	<assignmentStmt>              
+=                     7      ASSIGNOP           ----				<assignmentStmt>              yes	----
+"abcd"                7      STR                ----				<var>                         yes	----
+----				----   	----				----				<factor>                      no 	<var>                         
+----				----   	----				----				<term>                        no 	<factor>                      
+----				----   	----				----				<arithmeticExpression>        no 	<term>                        
+eps  				----   	----				----				<term1>                       yes	----
+----				----   	----				----				<term>                        no 	<term1>                       
+----				----   	----				----				<rightHandSide>               no 	<arithmeticExpression>        
+eps  				----   	----				----				<arithmeticExpression1>       yes	----
+----				----   	----				----				<arithmeticExpression>        no 	<arithmeticExpression1>       
+----				----   	----				----				<assignmentStmt>              no 	<rightHandSide>               
+;                     7      SEMICOLON          ----				<assignmentStmt>              yes	----
+----				----   	----				----				<stmtOrFunctionDef>           no 	<stmt>                        
+----				----   	----				----				<stmtsAndFunctionDefs>        no 	<stmtOrFunctionDef>           
+----				----   	----				----				<stmtsAndFunctionDefs>        no 	<stmtsAndFunctionDefs>        
+a                     8      ID                 ----				<assignmentStmt>              yes	----
+----				----   	----				----				<stmt>                        no 	<assignmentStmt>              
+=                     8      ASSIGNOP           ----				<assignmentStmt>              yes	----
+ 2                    8      NUM 				 2                  <var>                         yes	----
+----				----   	----				----				<factor>                      no 	<var>                         
+----				----   	----				----				<term>                        no 	<factor>                      
+----				----   	----				----				<arithmeticExpression>        no 	<term>                        
+eps  				----   	----				----				<term1>                       yes	----
+----				----   	----				----				<term>                        no 	<term1>                       
+----				----   	----				----				<rightHandSide>               no 	<arithmeticExpression>        
++                     8      PLUS               ----				<termOp>                      yes	----
+----				----   	----				----				<arithmeticExpression1>       no 	<termOp>                      
+----				----   	----				----				<arithmeticExpression>        no 	<arithmeticExpression1>       
+ 5                    8      NUM 				 5                  <var>                         yes	----
+----				----   	----				----				<factor>                      no 	<var>                         
+----				----   	----				----				<term>                        no 	<factor>                      
+----				----   	----				----				<arithmeticExpression>        no 	<term>                        
+eps  				----   	----				----				<term1>                       yes	----
+----				----   	----				----				<term>                        no 	<term1>                       
+----				----   	----				----				<arithmeticExpression1>       no 	<arithmeticExpression>        
+eps  				----   	----				----				<arithmeticExpression1>       yes	----
+----				----   	----				----				<arithmeticExpression>        no 	<arithmeticExpression1>       
+----				----   	----				----				<assignmentStmt>              no 	<rightHandSide>               
+;                     8      SEMICOLON          ----				<assignmentStmt>              yes	----
+----				----   	----				----				<stmtOrFunctionDef>           no 	<stmt>                        
+----				----   	----				----				<stmtsAndFunctionDefs>        no 	<stmtOrFunctionDef>           
+----				----   	----				----				<stmtsAndFunctionDefs>        no 	<stmtsAndFunctionDefs>        
+b                     9      ID                 ----				<assignmentStmt>              yes	----
+----				----   	----				----				<stmt>                        no 	<assignmentStmt>              
+=                     9      ASSIGNOP           ----				<assignmentStmt>              yes	----
+(                     9      OP                 ----				<factor>                      yes	----
+----				----   	----				----				<term>                        no 	<factor>                      
+a                     9      ID                 ----				<IDORmatrixElement>           yes	----
+----				----   	----				----				<var>                         no 	<IDORmatrixElement>           
+eps  				----   	----				----				<matrix2>                     yes	----
+----				----   	----				----				<IDORmatrixElement>           no 	<matrix2>                     
+----				----   	----				----				<factor>                      no 	<var>                         
+----				----   	----				----				<term>                        no 	<factor>                      
+----				----   	----				----				<arithmeticExpression>        no 	<term>                        
+eps  				----   	----				----				<term1>                       yes	----
+----				----   	----				----				<term>                        no 	<term1>                       
+----				----   	----				----				<factor>                      no 	<arithmeticExpression>        
+-                     9      MINUS              ----				<termOp>                      yes	----
+----				----   	----				----				<arithmeticExpression1>       no 	<termOp>                      
+----				----   	----				----				<arithmeticExpression>        no 	<arithmeticExpression1>       
+ 4                    9      NUM 				 4                  <var>                         yes	----
+----				----   	----				----				<factor>                      no 	<var>                         
+----				----   	----				----				<term>                        no 	<factor>                      
+----				----   	----				----				<arithmeticExpression>        no 	<term>                        
+eps  				----   	----				----				<term1>                       yes	----
+----				----   	----				----				<term>                        no 	<term1>                       
+----				----   	----				----				<arithmeticExpression1>       no 	<arithmeticExpression>        
+eps  				----   	----				----				<arithmeticExpression1>       yes	----
+----				----   	----				----				<arithmeticExpression>        no 	<arithmeticExpression1>       
+)                     9      CL                 ----				<factor>                      yes	----
+----				----   	----				----				<arithmeticExpression>        no 	<term>                        
+*                     9      MUL                ----				<factorOp>                    yes	----
+----				----   	----				----				<term1>                       no 	<factorOp>                    
+----				----   	----				----				<term>                        no 	<term1>                       
+(                     9      OP                 ----				<factor>                      yes	----
+----				----   	----				----				<term>                        no 	<factor>                      
+ 3                    9      NUM 				 3                  <var>                         yes	----
+----				----   	----				----				<factor>                      no 	<var>                         
+----				----   	----				----				<term>                        no 	<factor>                      
+----				----   	----				----				<arithmeticExpression>        no 	<term>                        
+eps  				----   	----				----				<term1>                       yes	----
+----				----   	----				----				<term>                        no 	<term1>                       
+----				----   	----				----				<factor>                      no 	<arithmeticExpression>        
+-                     9      MINUS              ----				<termOp>                      yes	----
+----				----   	----				----				<arithmeticExpression1>       no 	<termOp>                      
+----				----   	----				----				<arithmeticExpression>        no 	<arithmeticExpression1>       
+ 1                    9      NUM 				 1                  <var>                         yes	----
+----				----   	----				----				<factor>                      no 	<var>                         
+----				----   	----				----				<term>                        no 	<factor>                      
+----				----   	----				----				<arithmeticExpression>        no 	<term>                        
+eps  				----   	----				----				<term1>                       yes	----
+----				----   	----				----				<term>                        no 	<term1>                       
+----				----   	----				----				<arithmeticExpression1>       no 	<arithmeticExpression>        
+eps  				----   	----				----				<arithmeticExpression1>       yes	----
+----				----   	----				----				<arithmeticExpression>        no 	<arithmeticExpression1>       
+)                     9      CL                 ----				<factor>                      yes	----
+----				----   	----				----				<term1>                       no 	<term>                        
+eps  				----   	----				----				<term1>                       yes	----
+----				----   	----				----				<term>                        no 	<term1>                       
+----				----   	----				----				<rightHandSide>               no 	<arithmeticExpression>        
+eps  				----   	----				----				<arithmeticExpression1>       yes	----
+----				----   	----				----				<arithmeticExpression>        no 	<arithmeticExpression1>       
+----				----   	----				----				<assignmentStmt>              no 	<rightHandSide>               
+;                     9      SEMICOLON          ----				<assignmentStmt>              yes	----
+----				----   	----				----				<stmtOrFunctionDef>           no 	<stmt>                        
+----				----   	----				----				<stmtsAndFunctionDefs>        no 	<stmtOrFunctionDef>           
+----				----   	----				----				<stmtsAndFunctionDefs>        no 	<stmtsAndFunctionDefs>        
+g                     10     ID                 ----				<assignmentStmt>              yes	----
+----				----   	----				----				<stmt>                        no 	<assignmentStmt>              
+=                     10     ASSIGNOP           ----				<assignmentStmt>              yes	----
+ 10                   10     NUM 				 10                 <var>                         yes	----
+----				----   	----				----				<factor>                      no 	<var>                         
+----				----   	----				----				<term>                        no 	<factor>                      
+----				----   	----				----				<arithmeticExpression>        no 	<term>                        
+eps  				----   	----				----				<term1>                       yes	----
+----				----   	----				----				<term>                        no 	<term1>                       
+----				----   	----				----				<rightHandSide>               no 	<arithmeticExpression>        
+eps  				----   	----				----				<arithmeticExpression1>       yes	----
+----				----   	----				----				<arithmeticExpression>        no 	<arithmeticExpression1>       
+----				----   	----				----				<assignmentStmt>              no 	<rightHandSide>               
+;                     10     SEMICOLON          ----				<assignmentStmt>              yes	----
+----				----   	----				----				<stmtOrFunctionDef>           no 	<stmt>                        
+----				----   	----				----				<stmtsAndFunctionDefs>        no 	<stmtOrFunctionDef>           
+----				----   	----				----				<stmtsAndFunctionDefs>        no 	<stmtsAndFunctionDefs>        
+h                     11     ID                 ----				<assignmentStmt>              yes	----
+----				----   	----				----				<stmt>                        no 	<assignmentStmt>              
+=                     11     ASSIGNOP           ----				<assignmentStmt>              yes	----
+ 9                    11     NUM 				 9                  <var>                         yes	----
+----				----   	----				----				<factor>                      no 	<var>                         
+----				----   	----				----				<term>                        no 	<factor>                      
+----				----   	----				----				<arithmeticExpression>        no 	<term>                        
+eps  				----   	----				----				<term1>                       yes	----
+----				----   	----				----				<term>                        no 	<term1>                       
+----				----   	----				----				<rightHandSide>               no 	<arithmeticExpression>        
+eps  				----   	----				----				<arithmeticExpression1>       yes	----
+----				----   	----				----				<arithmeticExpression>        no 	<arithmeticExpression1>       
+----				----   	----				----				<assignmentStmt>              no 	<rightHandSide>               
+;                     11     SEMICOLON          ----				<assignmentStmt>              yes	----
+----				----   	----				----				<stmtOrFunctionDef>           no 	<stmt>                        
+----				----   	----				----				<stmtsAndFunctionDefs>        no 	<stmtOrFunctionDef>           
+----				----   	----				----				<stmtsAndFunctionDefs>        no 	<stmtsAndFunctionDefs>        
+u                     12     ID                 ----				<assignmentStmt>              yes	----
+----				----   	----				----				<stmt>                        no 	<assignmentStmt>              
+=                     12     ASSIGNOP           ----				<assignmentStmt>              yes	----
+ 12                   12     NUM 				 12                 <var>                         yes	----
+----				----   	----				----				<factor>                      no 	<var>                         
+----				----   	----				----				<term>                        no 	<factor>                      
+----				----   	----				----				<arithmeticExpression>        no 	<term>                        
+eps  				----   	----				----				<term1>                       yes	----
+----				----   	----				----				<term>                        no 	<term1>                       
+----				----   	----				----				<rightHandSide>               no 	<arithmeticExpression>        
+eps  				----   	----				----				<arithmeticExpression1>       yes	----
+----				----   	----				----				<arithmeticExpression>        no 	<arithmeticExpression1>       
+----				----   	----				----				<assignmentStmt>              no 	<rightHandSide>               
+;                     12     SEMICOLON          ----				<assignmentStmt>              yes	----
+----				----   	----				----				<stmtOrFunctionDef>           no 	<stmt>                        
+----				----   	----				----				<stmtsAndFunctionDefs>        no 	<stmtOrFunctionDef>           
+----				----   	----				----				<stmtsAndFunctionDefs>        no 	<stmtsAndFunctionDefs>        
+read                  13     READ               ----				<ioStmt>                      yes	----
+----				----   	----				----				<stmt>                        no 	<ioStmt>                      
+(                     13     OP                 ----				<ioStmt>                      yes	----
+v                     13     ID                 ----				<ioStmt>                      yes	----
+)                     13     CL                 ----				<ioStmt>                      yes	----
+;                     13     SEMICOLON          ----				<ioStmt>                      yes	----
+----				----   	----				----				<stmtOrFunctionDef>           no 	<stmt>                        
+----				----   	----				----				<stmtsAndFunctionDefs>        no 	<stmtOrFunctionDef>           
+----				----   	----				----				<stmtsAndFunctionDefs>        no 	<stmtsAndFunctionDefs>        
+function              14     FUNCTION           ----				<functionDef>                 yes	----
+----				----   	----				----				<stmtOrFunctionDef>           no 	<functionDef>                 
+[                     14     SQO                ----				<functionDef>                 yes	----
+int                   14     INT                ----				<type>                        yes	----
+----				----   	----				----				<parameter_list>              no 	<type>                        
+----				----   	----				----				<functionDef>                 no 	<parameter_list>              
+sum                   14     ID                 ----				<parameter_list>              yes	----
+,                     14     COMMA              ----				<remainingList>               yes	----
+----				----   	----				----				<parameter_list>              no 	<remainingList>               
+int                   14     INT                ----				<type>                        yes	----
+----				----   	----				----				<parameter_list>              no 	<type>                        
+----				----   	----				----				<remainingList>               no 	<parameter_list>              
+diff                  14     ID                 ----				<parameter_list>              yes	----
+eps  				----   	----				----				<remainingList>               yes	----
+----				----   	----				----				<parameter_list>              no 	<remainingList>               
+]                     14     SQC                ----				<functionDef>                 yes	----
+=                     14     ASSIGNOP           ----				<functionDef>                 yes	----
+_calculator           14     FUNID              ----				<functionDef>                 yes	----
+[                     14     SQO                ----				<functionDef>                 yes	----
+int                   14     INT                ----				<type>                        yes	----
+----				----   	----				----				<parameter_list>              no 	<type>                        
+----				----   	----				----				<functionDef>                 no 	<parameter_list>              
+c                     14     ID                 ----				<parameter_list>              yes	----
+eps  				----   	----				----				<remainingList>               yes	----
+----				----   	----				----				<parameter_list>              no 	<remainingList>               
+]                     14     SQC                ----				<functionDef>                 yes	----
+int                   15     INT                ----				<type>                        yes	----
+----				----   	----				----				<declarationStmt>             no 	<type>                        
+----				----   	----				----				<stmt>                        no 	<declarationStmt>             
+a                     15     ID                 ----				<var_list>                    yes	----
+----				----   	----				----				<declarationStmt>             no 	<var_list>                    
+eps  				----   	----				----				<more_ids>                    yes	----
+----				----   	----				----				<var_list>                    no 	<more_ids>                    
+;                     15     SEMICOLON          ----				<declarationStmt>             yes	----
+----				----   	----				----				<stmtOrFunctionDef>           no 	<stmt>                        
+----				----   	----				----				<functionDef>                 no 	<stmtOrFunctionDef>           
+a                     16     ID                 ----				<assignmentStmt>              yes	----
+----				----   	----				----				<stmt>                        no 	<assignmentStmt>              
+=                     16     ASSIGNOP           ----				<assignmentStmt>              yes	----
+ 1                    16     NUM 				 1                  <var>                         yes	----
+----				----   	----				----				<factor>                      no 	<var>                         
+----				----   	----				----				<term>                        no 	<factor>                      
+----				----   	----				----				<arithmeticExpression>        no 	<term>                        
+eps  				----   	----				----				<term1>                       yes	----
+----				----   	----				----				<term>                        no 	<term1>                       
+----				----   	----				----				<rightHandSide>               no 	<arithmeticExpression>        
+eps  				----   	----				----				<arithmeticExpression1>       yes	----
+----				----   	----				----				<arithmeticExpression>        no 	<arithmeticExpression1>       
+----				----   	----				----				<assignmentStmt>              no 	<rightHandSide>               
+;                     16     SEMICOLON          ----				<assignmentStmt>              yes	----
+----				----   	----				----				<stmtOrFunctionDef>           no 	<stmt>                        
+----				----   	----				----				<stmtsAndFunctionDefs>        no 	<stmtOrFunctionDef>           
+----				----   	----				----				<functionDef>                 no 	<stmtsAndFunctionDefs>        
+sum                   17     ID                 ----				<assignmentStmt>              yes	----
+----				----   	----				----				<stmt>                        no 	<assignmentStmt>              
+=                     17     ASSIGNOP           ----				<assignmentStmt>              yes	----
+c                     17     ID                 ----				<IDORmatrixElement>           yes	----
+----				----   	----				----				<var>                         no 	<IDORmatrixElement>           
+eps  				----   	----				----				<matrix2>                     yes	----
+----				----   	----				----				<IDORmatrixElement>           no 	<matrix2>                     
+----				----   	----				----				<factor>                      no 	<var>                         
+----				----   	----				----				<term>                        no 	<factor>                      
+----				----   	----				----				<arithmeticExpression>        no 	<term>                        
+eps  				----   	----				----				<term1>                       yes	----
+----				----   	----				----				<term>                        no 	<term1>                       
+----				----   	----				----				<rightHandSide>               no 	<arithmeticExpression>        
++                     17     PLUS               ----				<termOp>                      yes	----
+----				----   	----				----				<arithmeticExpression1>       no 	<termOp>                      
+----				----   	----				----				<arithmeticExpression>        no 	<arithmeticExpression1>       
+b                     17     ID                 ----				<IDORmatrixElement>           yes	----
+----				----   	----				----				<var>                         no 	<IDORmatrixElement>           
+eps  				----   	----				----				<matrix2>                     yes	----
+----				----   	----				----				<IDORmatrixElement>           no 	<matrix2>                     
+----				----   	----				----				<factor>                      no 	<var>                         
+----				----   	----				----				<term>                        no 	<factor>                      
+----				----   	----				----				<arithmeticExpression>        no 	<term>                        
+eps  				----   	----				----				<term1>                       yes	----
+----				----   	----				----				<term>                        no 	<term1>                       
+----				----   	----				----				<arithmeticExpression1>       no 	<arithmeticExpression>        
+eps  				----   	----				----				<arithmeticExpression1>       yes	----
+----				----   	----				----				<arithmeticExpression>        no 	<arithmeticExpression1>       
+----				----   	----				----				<assignmentStmt>              no 	<rightHandSide>               
+;                     17     SEMICOLON          ----				<assignmentStmt>              yes	----
+----				----   	----				----				<stmtOrFunctionDef>           no 	<stmt>                        
+----				----   	----				----				<stmtsAndFunctionDefs>        no 	<stmtOrFunctionDef>           
+----				----   	----				----				<stmtsAndFunctionDefs>        no 	<stmtsAndFunctionDefs>        
+diff                  18     ID                 ----				<assignmentStmt>              yes	----
+----				----   	----				----				<stmt>                        no 	<assignmentStmt>              
+=                     18     ASSIGNOP           ----				<assignmentStmt>              yes	----
+c                     18     ID                 ----				<IDORmatrixElement>           yes	----
+----				----   	----				----				<var>                         no 	<IDORmatrixElement>           
+eps  				----   	----				----				<matrix2>                     yes	----
+----				----   	----				----				<IDORmatrixElement>           no 	<matrix2>                     
+----				----   	----				----				<factor>                      no 	<var>                         
+----				----   	----				----				<term>                        no 	<factor>                      
+----				----   	----				----				<arithmeticExpression>        no 	<term>                        
+eps  				----   	----				----				<term1>                       yes	----
+----				----   	----				----				<term>                        no 	<term1>                       
+----				----   	----				----				<rightHandSide>               no 	<arithmeticExpression>        
+-                     18     MINUS              ----				<termOp>                      yes	----
+----				----   	----				----				<arithmeticExpression1>       no 	<termOp>                      
+----				----   	----				----				<arithmeticExpression>        no 	<arithmeticExpression1>       
+a                     18     ID                 ----				<IDORmatrixElement>           yes	----
+----				----   	----				----				<var>                         no 	<IDORmatrixElement>           
+eps  				----   	----				----				<matrix2>                     yes	----
+----				----   	----				----				<IDORmatrixElement>           no 	<matrix2>                     
+----				----   	----				----				<factor>                      no 	<var>                         
+----				----   	----				----				<term>                        no 	<factor>                      
+----				----   	----				----				<arithmeticExpression>        no 	<term>                        
+eps  				----   	----				----				<term1>                       yes	----
+----				----   	----				----				<term>                        no 	<term1>                       
+----				----   	----				----				<arithmeticExpression1>       no 	<arithmeticExpression>        
+eps  				----   	----				----				<arithmeticExpression1>       yes	----
+----				----   	----				----				<arithmeticExpression>        no 	<arithmeticExpression1>       
+----				----   	----				----				<assignmentStmt>              no 	<rightHandSide>               
+;                     18     SEMICOLON          ----				<assignmentStmt>              yes	----
+----				----   	----				----				<stmtOrFunctionDef>           no 	<stmt>                        
+----				----   	----				----				<stmtsAndFunctionDefs>        no 	<stmtOrFunctionDef>           
+----				----   	----				----				<stmtsAndFunctionDefs>        no 	<stmtsAndFunctionDefs>        
+eps  				----   	----				----				<stmtsAndFunctionDefs>        yes	----
+----				----   	----				----				<stmtsAndFunctionDefs>        no 	<stmtsAndFunctionDefs>        
+end                   19     END                ----				<functionDef>                 yes	----
+;                     19     SEMICOLON          ----				<functionDef>                 yes	----
+----				----   	----				----				<stmtsAndFunctionDefs>        no 	<stmtOrFunctionDef>           
+----				----   	----				----				<stmtsAndFunctionDefs>        no 	<stmtsAndFunctionDefs>        
+z                     20     ID                 ----				<assignmentStmt>              yes	----
+----				----   	----				----				<stmt>                        no 	<assignmentStmt>              
+=                     20     ASSIGNOP           ----				<assignmentStmt>              yes	----
+(                     20     OP                 ----				<factor>                      yes	----
+----				----   	----				----				<term>                        no 	<factor>                      
+(                     20     OP                 ----				<factor>                      yes	----
+----				----   	----				----				<term>                        no 	<factor>                      
+a                     20     ID                 ----				<IDORmatrixElement>           yes	----
+----				----   	----				----				<var>                         no 	<IDORmatrixElement>           
+eps  				----   	----				----				<matrix2>                     yes	----
+----				----   	----				----				<IDORmatrixElement>           no 	<matrix2>                     
+----				----   	----				----				<factor>                      no 	<var>                         
+----				----   	----				----				<term>                        no 	<factor>                      
+----				----   	----				----				<arithmeticExpression>        no 	<term>                        
+eps  				----   	----				----				<term1>                       yes	----
+----				----   	----				----				<term>                        no 	<term1>                       
+----				----   	----				----				<factor>                      no 	<arithmeticExpression>        
+-                     20     MINUS              ----				<termOp>                      yes	----
+----				----   	----				----				<arithmeticExpression1>       no 	<termOp>                      
+----				----   	----				----				<arithmeticExpression>        no 	<arithmeticExpression1>       
+g                     20     ID                 ----				<IDORmatrixElement>           yes	----
+----				----   	----				----				<var>                         no 	<IDORmatrixElement>           
+eps  				----   	----				----				<matrix2>                     yes	----
+----				----   	----				----				<IDORmatrixElement>           no 	<matrix2>                     
+----				----   	----				----				<factor>                      no 	<var>                         
+----				----   	----				----				<term>                        no 	<factor>                      
+----				----   	----				----				<arithmeticExpression>        no 	<term>                        
+eps  				----   	----				----				<term1>                       yes	----
+----				----   	----				----				<term>                        no 	<term1>                       
+----				----   	----				----				<arithmeticExpression1>       no 	<arithmeticExpression>        
+eps  				----   	----				----				<arithmeticExpression1>       yes	----
+----				----   	----				----				<arithmeticExpression>        no 	<arithmeticExpression1>       
+)                     20     CL                 ----				<factor>                      yes	----
+----				----   	----				----				<arithmeticExpression>        no 	<term>                        
+*                     20     MUL                ----				<factorOp>                    yes	----
+----				----   	----				----				<term1>                       no 	<factorOp>                    
+----				----   	----				----				<term>                        no 	<term1>                       
+(                     20     OP                 ----				<factor>                      yes	----
+----				----   	----				----				<term>                        no 	<factor>                      
+h                     20     ID                 ----				<IDORmatrixElement>           yes	----
+----				----   	----				----				<var>                         no 	<IDORmatrixElement>           
+eps  				----   	----				----				<matrix2>                     yes	----
+----				----   	----				----				<IDORmatrixElement>           no 	<matrix2>                     
+----				----   	----				----				<factor>                      no 	<var>                         
+----				----   	----				----				<term>                        no 	<factor>                      
+----				----   	----				----				<arithmeticExpression>        no 	<term>                        
+eps  				----   	----				----				<term1>                       yes	----
+----				----   	----				----				<term>                        no 	<term1>                       
+----				----   	----				----				<factor>                      no 	<arithmeticExpression>        
++                     20     PLUS               ----				<termOp>                      yes	----
+----				----   	----				----				<arithmeticExpression1>       no 	<termOp>                      
+----				----   	----				----				<arithmeticExpression>        no 	<arithmeticExpression1>       
+u                     20     ID                 ----				<IDORmatrixElement>           yes	----
+----				----   	----				----				<var>                         no 	<IDORmatrixElement>           
+eps  				----   	----				----				<matrix2>                     yes	----
+----				----   	----				----				<IDORmatrixElement>           no 	<matrix2>                     
+----				----   	----				----				<factor>                      no 	<var>                         
+----				----   	----				----				<term>                        no 	<factor>                      
+----				----   	----				----				<arithmeticExpression>        no 	<term>                        
+eps  				----   	----				----				<term1>                       yes	----
+----				----   	----				----				<term>                        no 	<term1>                       
+----				----   	----				----				<arithmeticExpression1>       no 	<arithmeticExpression>        
+eps  				----   	----				----				<arithmeticExpression1>       yes	----
+----				----   	----				----				<arithmeticExpression>        no 	<arithmeticExpression1>       
+)                     20     CL                 ----				<factor>                      yes	----
+----				----   	----				----				<term1>                       no 	<term>                        
+eps  				----   	----				----				<term1>                       yes	----
+----				----   	----				----				<term>                        no 	<term1>                       
+----				----   	----				----				<factor>                      no 	<arithmeticExpression>        
+eps  				----   	----				----				<arithmeticExpression1>       yes	----
+----				----   	----				----				<arithmeticExpression>        no 	<arithmeticExpression1>       
+)                     20     CL                 ----				<factor>                      yes	----
+----				----   	----				----				<arithmeticExpression>        no 	<term>                        
+eps  				----   	----				----				<term1>                       yes	----
+----				----   	----				----				<term>                        no 	<term1>                       
+----				----   	----				----				<rightHandSide>               no 	<arithmeticExpression>        
++                     20     PLUS               ----				<termOp>                      yes	----
+----				----   	----				----				<arithmeticExpression1>       no 	<termOp>                      
+----				----   	----				----				<arithmeticExpression>        no 	<arithmeticExpression1>       
+(                     20     OP                 ----				<factor>                      yes	----
+----				----   	----				----				<term>                        no 	<factor>                      
+(                     20     OP                 ----				<factor>                      yes	----
+----				----   	----				----				<term>                        no 	<factor>                      
+ 13                   20     NUM 				 13                 <var>                         yes	----
+----				----   	----				----				<factor>                      no 	<var>                         
+----				----   	----				----				<term>                        no 	<factor>                      
+----				----   	----				----				<arithmeticExpression>        no 	<term>                        
+eps  				----   	----				----				<term1>                       yes	----
+----				----   	----				----				<term>                        no 	<term1>                       
+----				----   	----				----				<factor>                      no 	<arithmeticExpression>        
+-                     20     MINUS              ----				<termOp>                      yes	----
+----				----   	----				----				<arithmeticExpression1>       no 	<termOp>                      
+----				----   	----				----				<arithmeticExpression>        no 	<arithmeticExpression1>       
+a                     20     ID                 ----				<IDORmatrixElement>           yes	----
+----				----   	----				----				<var>                         no 	<IDORmatrixElement>           
+eps  				----   	----				----				<matrix2>                     yes	----
+----				----   	----				----				<IDORmatrixElement>           no 	<matrix2>                     
+----				----   	----				----				<factor>                      no 	<var>                         
+----				----   	----				----				<term>                        no 	<factor>                      
+----				----   	----				----				<arithmeticExpression>        no 	<term>                        
+eps  				----   	----				----				<term1>                       yes	----
+----				----   	----				----				<term>                        no 	<term1>                       
+----				----   	----				----				<arithmeticExpression1>       no 	<arithmeticExpression>        
+eps  				----   	----				----				<arithmeticExpression1>       yes	----
+----				----   	----				----				<arithmeticExpression>        no 	<arithmeticExpression1>       
+)                     20     CL                 ----				<factor>                      yes	----
+----				----   	----				----				<arithmeticExpression>        no 	<term>                        
+*                     20     MUL                ----				<factorOp>                    yes	----
+----				----   	----				----				<term1>                       no 	<factorOp>                    
+----				----   	----				----				<term>                        no 	<term1>                       
+(                     20     OP                 ----				<factor>                      yes	----
+----				----   	----				----				<term>                        no 	<factor>                      
+u                     20     ID                 ----				<IDORmatrixElement>           yes	----
+----				----   	----				----				<var>                         no 	<IDORmatrixElement>           
+eps  				----   	----				----				<matrix2>                     yes	----
+----				----   	----				----				<IDORmatrixElement>           no 	<matrix2>                     
+----				----   	----				----				<factor>                      no 	<var>                         
+----				----   	----				----				<term>                        no 	<factor>                      
+----				----   	----				----				<arithmeticExpression>        no 	<term>                        
+eps  				----   	----				----				<term1>                       yes	----
+----				----   	----				----				<term>                        no 	<term1>                       
+----				----   	----				----				<factor>                      no 	<arithmeticExpression>        
++                     20     PLUS               ----				<termOp>                      yes	----
+----				----   	----				----				<arithmeticExpression1>       no 	<termOp>                      
+----				----   	----				----				<arithmeticExpression>        no 	<arithmeticExpression1>       
+g                     20     ID                 ----				<IDORmatrixElement>           yes	----
+----				----   	----				----				<var>                         no 	<IDORmatrixElement>           
+eps  				----   	----				----				<matrix2>                     yes	----
+----				----   	----				----				<IDORmatrixElement>           no 	<matrix2>                     
+----				----   	----				----				<factor>                      no 	<var>                         
+----				----   	----				----				<term>                        no 	<factor>                      
+----				----   	----				----				<arithmeticExpression>        no 	<term>                        
+eps  				----   	----				----				<term1>                       yes	----
+----				----   	----				----				<term>                        no 	<term1>                       
+----				----   	----				----				<arithmeticExpression1>       no 	<arithmeticExpression>        
+eps  				----   	----				----				<arithmeticExpression1>       yes	----
+----				----   	----				----				<arithmeticExpression>        no 	<arithmeticExpression1>       
+)                     20     CL                 ----				<factor>                      yes	----
+----				----   	----				----				<term1>                       no 	<term>                        
+eps  				----   	----				----				<term1>                       yes	----
+----				----   	----				----				<term>                        no 	<term1>                       
+----				----   	----				----				<factor>                      no 	<arithmeticExpression>        
+eps  				----   	----				----				<arithmeticExpression1>       yes	----
+----				----   	----				----				<arithmeticExpression>        no 	<arithmeticExpression1>       
+)                     20     CL                 ----				<factor>                      yes	----
+----				----   	----				----				<arithmeticExpression>        no 	<term>                        
+eps  				----   	----				----				<term1>                       yes	----
+----				----   	----				----				<term>                        no 	<term1>                       
+----				----   	----				----				<arithmeticExpression1>       no 	<arithmeticExpression>        
+eps  				----   	----				----				<arithmeticExpression1>       yes	----
+----				----   	----				----				<arithmeticExpression>        no 	<arithmeticExpression1>       
+----				----   	----				----				<assignmentStmt>              no 	<rightHandSide>               
+;                     20     SEMICOLON          ----				<assignmentStmt>              yes	----
+----				----   	----				----				<stmtOrFunctionDef>           no 	<stmt>                        
+----				----   	----				----				<stmtsAndFunctionDefs>        no 	<stmtOrFunctionDef>           
+----				----   	----				----				<stmtsAndFunctionDefs>        no 	<stmtsAndFunctionDefs>        
+g                     21     ID                 ----				<assignmentStmt>              yes	----
+----				----   	----				----				<stmt>                        no 	<assignmentStmt>              
+=                     21     ASSIGNOP           ----				<assignmentStmt>              yes	----
+(                     21     OP                 ----				<factor>                      yes	----
+----				----   	----				----				<term>                        no 	<factor>                      
+(                     21     OP                 ----				<factor>                      yes	----
+----				----   	----				----				<term>                        no 	<factor>                      
+a                     21     ID                 ----				<IDORmatrixElement>           yes	----
+----				----   	----				----				<var>                         no 	<IDORmatrixElement>           
+eps  				----   	----				----				<matrix2>                     yes	----
+----				----   	----				----				<IDORmatrixElement>           no 	<matrix2>                     
+----				----   	----				----				<factor>                      no 	<var>                         
+----				----   	----				----				<term>                        no 	<factor>                      
+----				----   	----				----				<arithmeticExpression>        no 	<term>                        
+eps  				----   	----				----				<term1>                       yes	----
+----				----   	----				----				<term>                        no 	<term1>                       
+----				----   	----				----				<factor>                      no 	<arithmeticExpression>        
+-                     21     MINUS              ----				<termOp>                      yes	----
+----				----   	----				----				<arithmeticExpression1>       no 	<termOp>                      
+----				----   	----				----				<arithmeticExpression>        no 	<arithmeticExpression1>       
+g                     21     ID                 ----				<IDORmatrixElement>           yes	----
+----				----   	----				----				<var>                         no 	<IDORmatrixElement>           
+eps  				----   	----				----				<matrix2>                     yes	----
+----				----   	----				----				<IDORmatrixElement>           no 	<matrix2>                     
+----				----   	----				----				<factor>                      no 	<var>                         
+----				----   	----				----				<term>                        no 	<factor>                      
+----				----   	----				----				<arithmeticExpression>        no 	<term>                        
+eps  				----   	----				----				<term1>                       yes	----
+----				----   	----				----				<term>                        no 	<term1>                       
+----				----   	----				----				<arithmeticExpression1>       no 	<arithmeticExpression>        
+eps  				----   	----				----				<arithmeticExpression1>       yes	----
+----				----   	----				----				<arithmeticExpression>        no 	<arithmeticExpression1>       
+)                     21     CL                 ----				<factor>                      yes	----
+----				----   	----				----				<arithmeticExpression>        no 	<term>                        
+*                     21     MUL                ----				<factorOp>                    yes	----
+----				----   	----				----				<term1>                       no 	<factorOp>                    
+----				----   	----				----				<term>                        no 	<term1>                       
+(                     21     OP                 ----				<factor>                      yes	----
+----				----   	----				----				<term>                        no 	<factor>                      
+h                     21     ID                 ----				<IDORmatrixElement>           yes	----
+----				----   	----				----				<var>                         no 	<IDORmatrixElement>           
+eps  				----   	----				----				<matrix2>                     yes	----
+----				----   	----				----				<IDORmatrixElement>           no 	<matrix2>                     
+----				----   	----				----				<factor>                      no 	<var>                         
+----				----   	----				----				<term>                        no 	<factor>                      
+----				----   	----				----				<arithmeticExpression>        no 	<term>                        
+eps  				----   	----				----				<term1>                       yes	----
+----				----   	----				----				<term>                        no 	<term1>                       
+----				----   	----				----				<factor>                      no 	<arithmeticExpression>        
++                     21     PLUS               ----				<termOp>                      yes	----
+----				----   	----				----				<arithmeticExpression1>       no 	<termOp>                      
+----				----   	----				----				<arithmeticExpression>        no 	<arithmeticExpression1>       
+u                     21     ID                 ----				<IDORmatrixElement>           yes	----
+----				----   	----				----				<var>                         no 	<IDORmatrixElement>           
+eps  				----   	----				----				<matrix2>                     yes	----
+----				----   	----				----				<IDORmatrixElement>           no 	<matrix2>                     
+----				----   	----				----				<factor>                      no 	<var>                         
+----				----   	----				----				<term>                        no 	<factor>                      
+----				----   	----				----				<arithmeticExpression>        no 	<term>                        
+eps  				----   	----				----				<term1>                       yes	----
+----				----   	----				----				<term>                        no 	<term1>                       
+----				----   	----				----				<arithmeticExpression1>       no 	<arithmeticExpression>        
+eps  				----   	----				----				<arithmeticExpression1>       yes	----
+----				----   	----				----				<arithmeticExpression>        no 	<arithmeticExpression1>       
+)                     21     CL                 ----				<factor>                      yes	----
+----				----   	----				----				<term1>                       no 	<term>                        
+eps  				----   	----				----				<term1>                       yes	----
+----				----   	----				----				<term>                        no 	<term1>                       
+----				----   	----				----				<factor>                      no 	<arithmeticExpression>        
+eps  				----   	----				----				<arithmeticExpression1>       yes	----
+----				----   	----				----				<arithmeticExpression>        no 	<arithmeticExpression1>       
+)                     21     CL                 ----				<factor>                      yes	----
+----				----   	----				----				<arithmeticExpression>        no 	<term>                        
+eps  				----   	----				----				<term1>                       yes	----
+----				----   	----				----				<term>                        no 	<term1>                       
+----				----   	----				----				<rightHandSide>               no 	<arithmeticExpression>        
+-                     21     MINUS              ----				<termOp>                      yes	----
+----				----   	----				----				<arithmeticExpression1>       no 	<termOp>                      
+----				----   	----				----				<arithmeticExpression>        no 	<arithmeticExpression1>       
+(                     21     OP                 ----				<factor>                      yes	----
+----				----   	----				----				<term>                        no 	<factor>                      
+(                     21     OP                 ----				<factor>                      yes	----
+----				----   	----				----				<term>                        no 	<factor>                      
+ 10                   21     NUM 				 10                 <var>                         yes	----
+----				----   	----				----				<factor>                      no 	<var>                         
+----				----   	----				----				<term>                        no 	<factor>                      
+----				----   	----				----				<arithmeticExpression>        no 	<term>                        
+eps  				----   	----				----				<term1>                       yes	----
+----				----   	----				----				<term>                        no 	<term1>                       
+----				----   	----				----				<factor>                      no 	<arithmeticExpression>        
++                     21     PLUS               ----				<termOp>                      yes	----
+----				----   	----				----				<arithmeticExpression1>       no 	<termOp>                      
+----				----   	----				----				<arithmeticExpression>        no 	<arithmeticExpression1>       
+a                     21     ID                 ----				<IDORmatrixElement>           yes	----
+----				----   	----				----				<var>                         no 	<IDORmatrixElement>           
+eps  				----   	----				----				<matrix2>                     yes	----
+----				----   	----				----				<IDORmatrixElement>           no 	<matrix2>                     
+----				----   	----				----				<factor>                      no 	<var>                         
+----				----   	----				----				<term>                        no 	<factor>                      
+----				----   	----				----				<arithmeticExpression>        no 	<term>                        
+eps  				----   	----				----				<term1>                       yes	----
+----				----   	----				----				<term>                        no 	<term1>                       
+----				----   	----				----				<arithmeticExpression1>       no 	<arithmeticExpression>        
+eps  				----   	----				----				<arithmeticExpression1>       yes	----
+----				----   	----				----				<arithmeticExpression>        no 	<arithmeticExpression1>       
+)                     21     CL                 ----				<factor>                      yes	----
+----				----   	----				----				<arithmeticExpression>        no 	<term>                        
+*                     21     MUL                ----				<factorOp>                    yes	----
+----				----   	----				----				<term1>                       no 	<factorOp>                    
+----				----   	----				----				<term>                        no 	<term1>                       
+(                     21     OP                 ----				<factor>                      yes	----
+----				----   	----				----				<term>                        no 	<factor>                      
+u                     21     ID                 ----				<IDORmatrixElement>           yes	----
+----				----   	----				----				<var>                         no 	<IDORmatrixElement>           
+eps  				----   	----				----				<matrix2>                     yes	----
+----				----   	----				----				<IDORmatrixElement>           no 	<matrix2>                     
+----				----   	----				----				<factor>                      no 	<var>                         
+----				----   	----				----				<term>                        no 	<factor>                      
+----				----   	----				----				<arithmeticExpression>        no 	<term>                        
+eps  				----   	----				----				<term1>                       yes	----
+----				----   	----				----				<term>                        no 	<term1>                       
+----				----   	----				----				<factor>                      no 	<arithmeticExpression>        
++                     21     PLUS               ----				<termOp>                      yes	----
+----				----   	----				----				<arithmeticExpression1>       no 	<termOp>                      
+----				----   	----				----				<arithmeticExpression>        no 	<arithmeticExpression1>       
+g                     21     ID                 ----				<IDORmatrixElement>           yes	----
+----				----   	----				----				<var>                         no 	<IDORmatrixElement>           
+eps  				----   	----				----				<matrix2>                     yes	----
+----				----   	----				----				<IDORmatrixElement>           no 	<matrix2>                     
+----				----   	----				----				<factor>                      no 	<var>                         
+----				----   	----				----				<term>                        no 	<factor>                      
+----				----   	----				----				<arithmeticExpression>        no 	<term>                        
+eps  				----   	----				----				<term1>                       yes	----
+----				----   	----				----				<term>                        no 	<term1>                       
+----				----   	----				----				<arithmeticExpression1>       no 	<arithmeticExpression>        
+eps  				----   	----				----				<arithmeticExpression1>       yes	----
+----				----   	----				----				<arithmeticExpression>        no 	<arithmeticExpression1>       
+)                     21     CL                 ----				<factor>                      yes	----
+----				----   	----				----				<term1>                       no 	<term>                        
+eps  				----   	----				----				<term1>                       yes	----
+----				----   	----				----				<term>                        no 	<term1>                       
+----				----   	----				----				<factor>                      no 	<arithmeticExpression>        
+eps  				----   	----				----				<arithmeticExpression1>       yes	----
+----				----   	----				----				<arithmeticExpression>        no 	<arithmeticExpression1>       
+)                     21     CL                 ----				<factor>                      yes	----
+----				----   	----				----				<arithmeticExpression>        no 	<term>                        
+eps  				----   	----				----				<term1>                       yes	----
+----				----   	----				----				<term>                        no 	<term1>                       
+----				----   	----				----				<arithmeticExpression1>       no 	<arithmeticExpression>        
+eps  				----   	----				----				<arithmeticExpression1>       yes	----
+----				----   	----				----				<arithmeticExpression>        no 	<arithmeticExpression1>       
+----				----   	----				----				<assignmentStmt>              no 	<rightHandSide>               
+;                     21     SEMICOLON          ----				<assignmentStmt>              yes	----
+----				----   	----				----				<stmtOrFunctionDef>           no 	<stmt>                        
+----				----   	----				----				<stmtsAndFunctionDefs>        no 	<stmtOrFunctionDef>           
+----				----   	----				----				<stmtsAndFunctionDefs>        no 	<stmtsAndFunctionDefs>        
+if                    22     IF                 ----				<conditionalStmt>             yes	----
+----				----   	----				----				<stmt>                        no 	<conditionalStmt>             
+(                     22     OP                 ----				<conditionalStmt>             yes	----
+g                     22     ID                 ----				<constrainedVars>             yes	----
+----				----   	----				----				<booleanExpression>           no 	<constrainedVars>             
+----				----   	----				----				<conditionalStmt>             no 	<booleanExpression>           
+>                     22     GT                 ----				<relationalOp>                yes	----
+----				----   	----				----				<booleanExpression>           no 	<relationalOp>                
+ 2                    22     NUM 				 2                  <constrainedVars>             yes	----
+----				----   	----				----				<booleanExpression>           no 	<constrainedVars>             
+)                     22     CL                 ----				<conditionalStmt>             yes	----
+x                     23     ID                 ----				<assignmentStmt>              yes	----
+----				----   	----				----				<stmt>                        no 	<assignmentStmt>              
+=                     23     ASSIGNOP           ----				<assignmentStmt>              yes	----
+ 5                    23     NUM 				 5                  <var>                         yes	----
+----				----   	----				----				<factor>                      no 	<var>                         
+----				----   	----				----				<term>                        no 	<factor>                      
+----				----   	----				----				<arithmeticExpression>        no 	<term>                        
+eps  				----   	----				----				<term1>                       yes	----
+----				----   	----				----				<term>                        no 	<term1>                       
+----				----   	----				----				<rightHandSide>               no 	<arithmeticExpression>        
+eps  				----   	----				----				<arithmeticExpression1>       yes	----
+----				----   	----				----				<arithmeticExpression>        no 	<arithmeticExpression1>       
+----				----   	----				----				<assignmentStmt>              no 	<rightHandSide>               
+;                     23     SEMICOLON          ----				<assignmentStmt>              yes	----
+----				----   	----				----				<conditionalStmt>             no 	<stmt>                        
+eps  				----   	----				----				<otherStmts>                  yes	----
+----				----   	----				----				<conditionalStmt>             no 	<otherStmts>                  
+else                  24     ELSE               ----				<elseORend>                   yes	----
+----				----   	----				----				<conditionalStmt>             no 	<elseORend>                   
+x                     25     ID                 ----				<assignmentStmt>              yes	----
+----				----   	----				----				<stmt>                        no 	<assignmentStmt>              
+=                     25     ASSIGNOP           ----				<assignmentStmt>              yes	----
+ 10                   25     NUM 				 10                 <var>                         yes	----
+----				----   	----				----				<factor>                      no 	<var>                         
+----				----   	----				----				<term>                        no 	<factor>                      
+----				----   	----				----				<arithmeticExpression>        no 	<term>                        
+eps  				----   	----				----				<term1>                       yes	----
+----				----   	----				----				<term>                        no 	<term1>                       
+----				----   	----				----				<rightHandSide>               no 	<arithmeticExpression>        
+eps  				----   	----				----				<arithmeticExpression1>       yes	----
+----				----   	----				----				<arithmeticExpression>        no 	<arithmeticExpression1>       
+----				----   	----				----				<assignmentStmt>              no 	<rightHandSide>               
+;                     25     SEMICOLON          ----				<assignmentStmt>              yes	----
+----				----   	----				----				<otherStmts>                  no 	<stmt>                        
+----				----   	----				----				<elseORend>                   no 	<otherStmts>                  
+eps  				----   	----				----				<otherStmts>                  yes	----
+----				----   	----				----				<otherStmts>                  no 	<otherStmts>                  
+endif                 26     ENDIF              ----				<elseORend>                   yes	----
+----				----   	----				----				<stmtOrFunctionDef>           no 	<stmt>                        
+----				----   	----				----				<stmtsAndFunctionDefs>        no 	<stmtOrFunctionDef>           
+----				----   	----				----				<stmtsAndFunctionDefs>        no 	<stmtsAndFunctionDefs>        
+NullNode 			----   	----				----				----  						  no 	----
+----				----   	----				----				<stmtsAndFunctionDefs>        no 	<stmtsAndFunctionDefs>        
+end                   32     END                ----				<mainFunction>                yes	----
+Enter an option:Compiled with errors
+Traversal of AST: <parent><allchildren><sibling> order
+
+MAIN:{
+DECLARATIONSTMT:{
+INT
+ID
+ID
+ID
+ID
+}
+
+DECLARATIONSTMT:{
+REAL
+ID
+ID
+}
+
+DECLARATIONSTMT:{
+MATRIX
+ID
+}
+
+DECLARATIONSTMT:{
+INT
+ID
+ID
+}
+
+ASSIGNMENTSTMT:{
+ID
+ROW:{
+NUM
+NUM
+NUM
+}
+
+ROW:{
+NUM
+NUM
+NUM
+}
+
+ROW:{
+NUM
+NUM
+NUM
+}
+
+}
+
+ASSIGNMENTSTMT:{
+ID
+STR
+}
+
+ASSIGNMENTSTMT:{
+ID
+PLUS:{
+NUM
+NUM
+}
+
+}
+
+ASSIGNMENTSTMT:{
+ID
+MUL:{
+MINUS:{
+IDORMATRIXELEMENT:{
+ID
+}
+
+NUM
+}
+
+TERM:{
+MINUS:{
+NUM
+NUM
+}
+
+}
+
+}
+
+}
+
+ASSIGNMENTSTMT:{
+ID
+NUM
+}
+
+ASSIGNMENTSTMT:{
+ID
+NUM
+}
+
+ASSIGNMENTSTMT:{
+ID
+NUM
+}
+
+READ:{
+ID
+}
+
+FUNCTIONDEF:{
+TYPENODE:{
+INT
+ID
+}
+
+TYPENODE:{
+INT
+ID
+}
+
+FUNID
+TYPENODE:{
+INT
+ID
+}
+
+DECLARATIONSTMT:{
+INT
+ID
+}
+
+ASSIGNMENTSTMT:{
+ID
+NUM
+}
+
+ASSIGNMENTSTMT:{
+ID
+PLUS:{
+IDORMATRIXELEMENT:{
+ID
+}
+
+IDORMATRIXELEMENT:{
+ID
+}
+
+}
+
+}
+
+ASSIGNMENTSTMT:{
+ID
+MINUS:{
+IDORMATRIXELEMENT:{
+ID
+}
+
+IDORMATRIXELEMENT:{
+ID
+}
+
+}
+
+}
+
+}
+
+ASSIGNMENTSTMT:{
+ID
+PLUS:{
+MUL:{
+MINUS:{
+IDORMATRIXELEMENT:{
+ID
+}
+
+IDORMATRIXELEMENT:{
+ID
+}
+
+}
+
+TERM:{
+PLUS:{
+IDORMATRIXELEMENT:{
+ID
+}
+
+IDORMATRIXELEMENT:{
+ID
+}
+
+}
+
+}
+
+}
+
+MUL:{
+MINUS:{
+NUM
+IDORMATRIXELEMENT:{
+ID
+}
+
+}
+
+TERM:{
+PLUS:{
+IDORMATRIXELEMENT:{
+ID
+}
+
+IDORMATRIXELEMENT:{
+ID
+}
+
+}
+
+}
+
+}
+
+}
+
+}
+
+ASSIGNMENTSTMT:{
+ID
+MINUS:{
+MUL:{
+MINUS:{
+IDORMATRIXELEMENT:{
+ID
+}
+
+IDORMATRIXELEMENT:{
+ID
+}
+
+}
+
+TERM:{
+PLUS:{
+IDORMATRIXELEMENT:{
+ID
+}
+
+IDORMATRIXELEMENT:{
+ID
+}
+
+}
+
+}
+
+}
+
+MUL:{
+PLUS:{
+NUM
+IDORMATRIXELEMENT:{
+ID
+}
+
+}
+
+TERM:{
+PLUS:{
+IDORMATRIXELEMENT:{
+ID
+}
+
+IDORMATRIXELEMENT:{
+ID
+}
+
+}
+
+}
+
+}
+
+}
+
+}
+
+GT:{
+ID
+NUM
+}
+
+ASSIGNMENTSTMT:{
+ID
+NUM
+}
+
+ASSIGNMENTSTMT:{
+ID
+NUM
+}
+
+}
+Enter an option:Identifier Name	scope	type	offset
+a	_main	INT	0
+g	_main	INT	2
+h	_main	INT	4
+x	_main	INT	6
+b	_main	REAL	8
+z	_main	REAL	12
+s	_main	MATRIX	16
+u	_main	INT	16
+v	_main	INT	18
+a	_calculator	INT	0
+Enter an option:

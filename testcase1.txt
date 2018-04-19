@@ -1,14 +1,49 @@
-_main[     ]
-	string str1, str2;
-	matrix m1;
-	str1 = "eradicate";
-	blankSTR = "  ";
-	str2 = "plagiarism";
-	function [string s]= _concatenate[string a, string a2]
-		str1 = a + a2;
+_main[]
+	int a, g,h,x;
+	real b,z;
+	string s;
+	int u,v;
+	matrix mat1;	
+	mat1 = [1,2, 3; 4, 5, 6; 6, 7, 8];
+	s = "abcd";
+	a = 2 + 5;
+	b = (a-4)*(3-1);
+	g = 10;
+	h = 9;
+	u = 12;
+	read(v);
+	function [int sum, int diff]= _calculator[int c]
+		int a;
+		a=1;
+		sum = c + b;
+		diff = c - a;
 	end;
-	string ccSubmission;
-	ccSubmission = _concatenate(str1, blankSTR);
-	ccSubmission = _concatenate(ccSubmission, str2);
+	function [int sum, int diff]= _calculator[int c]
+		int a;
+		a=1;
+		sum = c + b;
+		diff = c - a;
+	end;
+	int c1;
+	c1=0;
+	z = ((a -g) *(h+u))+((13-a)*(u+g));
+	g = ((a -g) *(h+u))-((10+a)*(u+g));
+	if(g>2)
+		x = 5;
+	else
+		x = 10;
+	endif;
+	if(g<2)
+		x = 15;
+	else
+		x = 20;
+	endif;
 end
+
+#Semantic errors
+#line 6: variable mat1 is not declared
+#line 7: type mismatch errors
+#line 9: type mismatch error
+#line 15: type mismatch error
+#line 18: type mismatch error
 

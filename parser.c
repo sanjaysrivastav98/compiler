@@ -776,7 +776,13 @@ void printTree(parseTree p,FILE* fp){
 // }
 
 void printParseTree(parseTree PT, char *outfile){
-	FILE* fp=fopen(outfile,"w");
+	FILE* fp;
+	if(strcmp(outfile,"stdout")==0){
+		fp = stdout;
+	}
+	else{
+		fp=fopen(outfile,"w");
+	}
 	fprintf(fp, "-----------------------------------------------------------------------------------------------------------------\n" );
 	fprintf(fp,"lexemeCurrentNode   lineno   token\t\t\tvalueIfNumber  \t\t\tparentNodeSymbol  \t\t\tisLeaf  NodeSymbol\n");
 	fprintf(fp, "-----------------------------------------------------------------------------------------------------------------\n" );

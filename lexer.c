@@ -182,6 +182,29 @@ void printToken(Token tk){
 	// 	printf("%s:\t-\t%d\n",tk->token_id,tk->line_no);
 	// }
 }
+
+tokenList copyTokenList(tokenList t){
+	tokenList temp=(tokenList)malloc(sizeof(tokenList));
+	tokenNode temp1=NULL,temp2=t->head,temp3;
+	while(temp2!=NULL){
+		if(temp->head==NULL){
+			temp3=(tokenNode)malloc(sizeof(tokennode));
+			temp3->tk=temp2->tk;
+			temp3->next=NULL;
+			temp->head=temp3;
+		}
+		else{
+			temp3->next=(tokenNode)malloc(sizeof(tokennode));
+			temp3=temp3->next;
+			temp3->tk=temp2->tk;
+			temp3->next=NULL;
+		}
+		temp2=temp2->next;
+	}
+	return temp;
+
+}
+
 void print(tokenList t){
 	tokenNode temp=t->head;
 	printf("-----------------------------------------------------------------\n");

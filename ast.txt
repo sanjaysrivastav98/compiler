@@ -1,0 +1,87 @@
+<mainFunction>.addr = new Node(MAIN,<stmtOrFunctionDef>.addr + <stmtsAndFunctionDefs>.addr)
+<stmtsAndFunctionDefs>.addr = <stmtOrFunctionDef>.addr + <stmtsAndFunctionDefs>.addr
+<stmtsAndFunctionDefs>.addr = NULL
+<stmtOrFunctionDef>.addr = <stmt>.addr
+<stmtOrFunctionDef>.addr = <functionDef>.addr
+<stmt>.addr = <declarationStmt>.addr
+<stmt>.addr = <assignmentStmt>.addr
+<stmt>.addr = <conditionalStmt>.addr
+<stmt>.addr = <ioStmt>.addr
+<stmt>.addr = new Node(FuncSize_Stmt,<leftHandSide>.addr, <funCallORsizeCallStmt>.addr)
+<stmt>.addr = <funCallStmt>.addr
+<funCallORsizeCallStmt>.addr = <sizeCallStmt>.addr
+<funCallORsizeCallStmt>.addr = <funCallStmt>.addr
+<functionDef>.addr = new Node(FUNCTION,<parameter_list>.addr, new Leaf(FUNID,FUNID.entry),<parameter_list>.addr,<stmtOrFunctionDef>.addr + <stmtsAndFunctionDefs>.addr)
+<parameter_list>.addr = new Node(ParamList,<type>.addr ,new Leaf(ID,ID.entry)) + <remainingList>.addr
+<type>.addr = new Leaf(INT)
+<type>.addr = new Leaf(REAL)
+<type>.addr = new Leaf(STRING)
+<type>.addr = new Leaf(MATRIX)
+<remainingList>.addr = <parameter_list>.addr
+<remainingList>.addr = NULL
+<declarationStmt>.addr = new Node(Declaration_Stmt,<type>.addr,<var_list>.addr)
+<var_list>.addr = new Leaf(ID,ID.entry) + <more_ids>.addr
+<more_ids>.addr =  <var_list>.addr
+<more_ids>.addr = NULL
+<assignmentStmt>.addr = new Node(Assignment_Stmt,new Leaf(ID,ID.entry),<rightHandSide>.addr)
+<rightHandSide>.addr = <arithmeticExpression>.addr
+<rightHandSide>.addr = <sizeExpression>.addr
+<rightHandSide>.addr = <functionCall>.addr
+<leftHandSide>.addr = <var_list>.addr
+<sizeCallStmt>.addr = <sizeExpression>.addr
+<conditionalStmt>.addr = new Node(Conditional_Stmt,<booleanExpression>.addr,<stmt>.addr + <otherStmts>.addr , <elseORend>.addr)
+<elseORend>.addr = <otherStmts>.addr
+<elseORend>.addr = NULL
+<otherStmts>.addr = <stmt>.addr + <otherStmts>.addr
+<otherStmts>.addr = NULL
+<ioStmt>.addr = new Node(READ,new Leaf(ID,ID.entry))
+<ioStmt>.addr = new Node(PRINT,new Leaf(ID,ID.entry))
+<funCallStmt>.addr = <functionCall>.addr
+<functionCall>.addr = new Node(FunctionCall,new Leaf(FUNID,FUNID.entry),<var_list1>.addr)
+<var_list1>.addr = <var>.addr + <list_var>.addr
+<list_var>.addr = <var_list1>.addr
+<list_var>.addr = NULL
+<sizeExpression>.addr = new Node(SIZE,new Leaf(ID,ID.entry))
+
+
+
+<arithmeticExpression1>.inh = <term>.addr
+<arithmeticExpression>.addr = <arithmeticExpression1>.addr
+<arithmeticExpression1>.addr = new Node(PLUS,<arithmeticExpression1>.inh,<arithmeticExpression>.addr)
+<arithmeticExpression1>.addr = new Node(MINUS,<arithmeticExpression1>.inh,<arithmeticExpression>.addr)
+<arithmeticExpression1>.addr = NULL
+
+
+<term1>.inh = <factor>.addr
+<term>.addr = <term1>.addr
+<term1>.addr = new Node(MUL,<term1>.inh,<term>.addr)
+<term1>.addr = new Node(DIV,<term1>.inh,<term>.addr)
+<factor>.addr = <arithmeticExpression>.addr
+<factor>.addr = <var>.addr
+
+
+
+<booleanExpression>.addr = new Node(AND,<booleanExpression>.addr,<booleanExpression>.addr)
+<booleanExpression>.addr = new Node(OR,<booleanExpression>.addr,<booleanExpression>.addr)
+<booleanExpression>.addr = new Node(NOT,<booleanExpression>.addr)
+<booleanExpression>.addr = new Node(LT,<constrainedVars>,<constrainedVars>)
+<booleanExpression>.addr = new Node(LE,<constrainedVars>,<constrainedVars>)
+<booleanExpression>.addr = new Node(EQ,<constrainedVars>,<constrainedVars>)
+<booleanExpression>.addr = new Node(GT,<constrainedVars>,<constrainedVars>)
+<booleanExpression>.addr = new Node(GE,<constrainedVars>,<constrainedVars>)
+<booleanExpression>.addr = new Node(NE,<constrainedVars>,<constrainedVars>)
+<var>.addr = new Leaf(NUM,NUM.val)
+<var>.addr = new Leaf(RNUM,RNUM.val)
+<var>.addr = new Leaf(STR,STR.val)
+<var>.addr = <IDORmatrixElement>.addr
+<IDORmatrixElement>.addr = <matrix1>.addr
+<IDORmatrixElement>.addr = new Node(matrix2,new Leaf(ID,ID.entry),<matrix2>.addr)
+<matrix1>.addr = <row>.addr
+<row>.addr = <firstRow>.addr + <otherRows>.addr
+<firstRow>.addr = new Leaf(NUM,NUM.entry)+<otherEles>.addr
+<otherRows>.addr = <row>.addr
+<otherRows>.addr = NULL
+<otherEles>.addr = <firstRow>.addr
+<otherEles>.addr = NULL
+<matrix2>.addr = new Node(matrix2,new Leaf(NUM,NUM.entry),new Leaf(NUM,NUM.entry))
+<matrix2>.addr = NULL

@@ -29,3 +29,5 @@ void removeComments(char* filename);
 int hash(char *str,int m);
 
 void fillKeyHash();
+
+tokenList copyTokenList(tokenList t);
